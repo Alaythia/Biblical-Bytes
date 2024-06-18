@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes", "src\BiblicalBytes\BiblicalBytes.csproj", "{EDC18993-17B7-4F49-81E4-0941B90D4D83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiblicalBytes", "src\BiblicalBytes\BiblicalBytes.csproj", "{EDC18993-17B7-4F49-81E4-0941B90D4D83}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C48DD8DA-295E-49DE-8A28-25CDC08A96C6}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Waf.Wpf", "..\Window
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1663BA74-39D7-4D9F-98A6-3E7F5EE472DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes.Tests", "test\BiblicalBytes.Tests\BiblicalBytes.Tests.csproj", "{7B96D471-B76B-44D1-A77A-84500FE7D7D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiblicalBytes.Tests", "test\BiblicalBytes.Tests\BiblicalBytes.Tests.csproj", "{7B96D471-B76B-44D1-A77A-84500FE7D7D8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Waf.Core.Test", "..\Windows-Application-Framework\src\System.Waf\System.Waf\System.Waf.Core.Test\System.Waf.Core.Test.csproj", "{105B1456-EB89-46F4-823E-DB63FC4E3FDD}"
 EndProject
@@ -23,13 +23,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Waf.Wpf.Test", "..\W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Waf.UnitTesting.Wpf", "..\Windows-Application-Framework\src\System.Waf\System.Waf\System.Waf.UnitTesting.Wpf\System.Waf.UnitTesting.Wpf.csproj", "{A15FF050-B72A-4884-AFE5-4F411B5FA0B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Services", "src\Common.Services\Common.Services.csproj", "{FF9E0478-5CCD-445A-A467-63F55AF0458D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Services", "src\Common.Services\Common.Services.csproj", "{FF9E0478-5CCD-445A-A467-63F55AF0458D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "res", "res", "{563A0848-52CC-4AD3-8D74-F53D7686F5FC}"
 	ProjectSection(SolutionItems) = preProject
 		res\Alaythia Software 256.ico = res\Alaythia Software 256.ico
 		res\Alaythia Software 32.ico = res\Alaythia Software 32.ico
 		res\Alaythia Software.ico = res\Alaythia Software.ico
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Presentation", "src\Infrastructure.Presentation\Infrastructure.Presentation.csproj", "{3EBCB6D6-00BF-41B5-B4F1-AF3AB0EDD305}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{C4C93406-5BBE-470E-BDEF-0EB21EA20579}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
@@ -74,6 +83,10 @@ Global
 		{FF9E0478-5CCD-445A-A467-63F55AF0458D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF9E0478-5CCD-445A-A467-63F55AF0458D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF9E0478-5CCD-445A-A467-63F55AF0458D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EBCB6D6-00BF-41B5-B4F1-AF3AB0EDD305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EBCB6D6-00BF-41B5-B4F1-AF3AB0EDD305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EBCB6D6-00BF-41B5-B4F1-AF3AB0EDD305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EBCB6D6-00BF-41B5-B4F1-AF3AB0EDD305}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +101,7 @@ Global
 		{FDE67292-4DB3-48F2-A00A-853D359F1DE3} = {1663BA74-39D7-4D9F-98A6-3E7F5EE472DA}
 		{A15FF050-B72A-4884-AFE5-4F411B5FA0B9} = {1663BA74-39D7-4D9F-98A6-3E7F5EE472DA}
 		{FF9E0478-5CCD-445A-A467-63F55AF0458D} = {C48DD8DA-295E-49DE-8A28-25CDC08A96C6}
+		{3EBCB6D6-00BF-41B5-B4F1-AF3AB0EDD305} = {C48DD8DA-295E-49DE-8A28-25CDC08A96C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A9E4329-7D05-49B6-874D-79141BBD287D}
