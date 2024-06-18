@@ -32,11 +32,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "res", "res", "{563A0848-52C
 		res\Alaythia Software.ico = res\Alaythia Software.ico
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Presentation", "src\Infrastructure.Presentation\Infrastructure.Presentation.csproj", "{3EBCB6D6-00BF-41B5-B4F1-AF3AB0EDD305}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Presentation", "src\Infrastructure.Presentation\Infrastructure.Presentation.csproj", "{3EBCB6D6-00BF-41B5-B4F1-AF3AB0EDD305}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{C4C93406-5BBE-470E-BDEF-0EB21EA20579}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.github\CODE_OF_CONDUCT.md = .github\CODE_OF_CONDUCT.md
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
