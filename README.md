@@ -11,7 +11,7 @@ creating them, I have found many of them wanting
 concerning the features that I would like to see in 
 a study application.
 
-From this desire, Bible Bytes was born. 
+From this desire, Biblical Bytes was born. 
 
 Please join me in creating the best bible study application in the world!
 
