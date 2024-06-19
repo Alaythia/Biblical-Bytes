@@ -37,16 +37,25 @@ It is the duty of all community leaders to protect the privacy and safety of who
 ## Enforcement Guidelines
 
 When community leaders decide the outcomes for any action that they find to break this Code of Conduct, they will use these Community Impact Guidelines:
+
 ### 1. Correction
-**Community Impact**: Unprofessional or unwelcome language or behavior in the community.
+**Community Impact**: Unchristian, unprofessional, or unwelcome language or behavior in the community.
+
 **Consequence**: A confidential, written reminder from community leaders, clarifying the type of violation and giving a reason for why the behavior was unacceptable. A public apology may be required.
+
 ### 2. Warning
 **Community Impact**: A breach by one event or a sequence of actions.
+
 **Consequence**: A warning with penalties for more violations. No contact with the people involved, or those enforcing the Code of Conduct, for a set time. This covers community and external spaces like social media. Breaking these rules may result in a temporary or permanent ban.
+
 ### 3. Temporary Ban
+
 **Community Impact**: A severe breach of community norms, including persistent unacceptable behavior.
+
 **Consequence**: A time-limited suspension from any kind of engagement or public conversation with the community for a certain duration. During this period, no public or private contact with the people involved, including unwanted contact with those enforcing the Code of Conduct, is permitted.
 If you breach these terms, you may face a lifelong ban.
+
 ### 4. Permanent Ban
 **Community Impact**: Showing a consistent disregard for community norms, including persistent improper conduct, bullying of a person, or hostility toward or defamation of groups of people.
+
 **Consequence** A lasting prohibition from any kind of social engagement within the community.
