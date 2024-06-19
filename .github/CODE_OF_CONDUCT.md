@@ -1,6 +1,9 @@
 # The Alaythia Project Community Code of Conduct
 ## Our Pledge
-As part of this community, we promise to treat everyone with respect and without harassment, no matter their age, body size, disability, ethnicity, experience, education, socio-economic status, nationality, appearance, or race. We promise to follow the spirit of Jesus Christ and "do unto others as we would have them do unto us." 
+As part of this community, we promise to treat everyone with respect and without harassment, no matter their age, body size, disability, ethnicity, experience, education, socio-economic status, nationality, appearance, or race. 
+
+We promise to follow the spirit of Jesus Christ and "do unto others as we would have them do unto us." 
+
 We commit to behaving and communicating in ways that make our community more open, welcoming, and healthy.
 ## Our Standards
 Some examples of how to foster a constructive and respectful community are:
