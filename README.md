@@ -1,6 +1,12 @@
 # Biblical Bytes
 
-Description comeing soon.
+An opensource project to create a Bible study tool 
+that is easy to use and understand, so that anyone can
+study the Bible. 
+
+
+
+
 
 ## License
 
