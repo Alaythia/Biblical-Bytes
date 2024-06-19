@@ -14,4 +14,12 @@
     <Content Include="Alaythia Software.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog" Version="4.0.0" />
+  </ItemGroup>
+
 </Project>
