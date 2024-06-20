@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
-using Common.Services.Commands;
+using Common.Commands;
 
-namespace Common.Services;
+namespace Common.Contracts.Services;
 
 /// <summary>Exposes the functionality of the shell.</summary>
 public interface IShellService : INotifyPropertyChanged

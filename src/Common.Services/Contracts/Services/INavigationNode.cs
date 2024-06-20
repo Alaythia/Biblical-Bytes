@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Common.Services;
+namespace Common.Contracts.Services;
 
 /// <summary>Represents a navigation node.</summary>
 public interface INavigationNode : INotifyPropertyChanged

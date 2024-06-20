@@ -16,6 +16,11 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Controls\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Windows-Application-Framework\src\System.Waf\System.Waf\System.Waf.Core\System.Waf.Core.csproj" />
   </ItemGroup>
 
 </Project>

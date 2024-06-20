@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Common.Services.Commands;
+namespace Common.Commands;
 /// <summary>Defines a toolbar command</summary>
 public class ToolBarCommand
 {

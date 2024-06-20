@@ -1,6 +1,6 @@
-﻿namespace Common.Services;
+﻿namespace Common.Contracts.Services;
 
-public interface IBibleService
+public interface IBibleBookService
 {
     /// <summary>Gets the Bible book names in the specified language.</summary>
     /// <param name="language">The language.</param>

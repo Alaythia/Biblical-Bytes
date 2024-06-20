@@ -1,4 +1,4 @@
-﻿namespace Common.Services;
+﻿namespace Common.Contracts.Services;
 
 /// <summary>Exposes the navigation functionality of the shell.</summary>
 public interface INavigationService

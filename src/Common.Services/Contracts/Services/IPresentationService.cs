@@ -1,4 +1,4 @@
-﻿namespace Common.Services;
+﻿namespace Common.Contracts.Services;
 
 /// <summary>
 /// Service for initializing the presentation layer.
