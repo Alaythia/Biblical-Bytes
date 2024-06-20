@@ -1,0 +1,24 @@
+﻿using System.ComponentModel;
+using Common.Services.Commands;
+
+namespace Common.Services;
+
+/// <summary>Exposes the functionality of the shell.</summary>
+public interface IShellService : INotifyPropertyChanged
+{
+    /// <summary>Gets the shell view. Use this object as owner when you need to show a modal dialog.</summary>
+    object ShellView { get; }
+
+    /// <summary>Gets or sets the content view which is shown by the shell.</summary>
+    object? ContentView { get; set; }
+
+    /// <summary>Adds the specified toolbar commands.</summary>
+    /// <param name="commands">The toolbar commands.</param>
+    void AddToolBarCommands(IReadOnlyList<ToolBarCommand> commands);
+
+    /// <summary>Clears the toolbar commands.</summary>
+    void ClearToolBarCommands();
+
+    /// <summary>Commit UI changes (e.g. of TextBox).</summary>
+    void CommitUiChanges();
+}
