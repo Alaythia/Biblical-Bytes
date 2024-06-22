@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "res", "res", "{563A0848-52C
 	ProjectSection(SolutionItems) = preProject
 		res\Alaythia Software 256.ico = res\Alaythia Software 256.ico
 		res\Alaythia Software 32.ico = res\Alaythia Software 32.ico
+
 		res\alaythia-software-logo.ico = res\alaythia-software-logo.ico
 	EndProjectSection
 EndProject
