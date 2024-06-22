@@ -8,5 +8,8 @@
         x:Class="BiblicalBytes.Views.MainWindow"
         Icon="/Assets/alaythia-software-logo.ico"
         Title="BiblicalBytes">
-        <views:MainView />
+    <Grid RowDefinitions="20, Auto">
+        
+        <views:MainView Grid.Column="0" Grid.Row="1" />
+    </Grid>
 </Window>

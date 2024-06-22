@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiblicalBytes.Desktop", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes.Bible.Presentation", "BiblicalBytes.Bible\BiblicalBytes.Bible.Presentation.csproj", "{E152DF12-5D82-4D0C-948A-9CD81CEAFA63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes.Bible.Module", "src\BiblicalBytes.Bible.Module\BiblicalBytes.Bible.Module.csproj", "{76E67B24-A4AE-427E-8362-FBE044C3418C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{E152DF12-5D82-4D0C-948A-9CD81CEAFA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E152DF12-5D82-4D0C-948A-9CD81CEAFA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E152DF12-5D82-4D0C-948A-9CD81CEAFA63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E67B24-A4AE-427E-8362-FBE044C3418C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E67B24-A4AE-427E-8362-FBE044C3418C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E67B24-A4AE-427E-8362-FBE044C3418C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E67B24-A4AE-427E-8362-FBE044C3418C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{AF69C50D-6D38-4132-9D0E-31033D6A3685} = {CCB3CE9E-2E44-4809-81D5-E467A98ACA81}
 		{1F88D773-8F2B-42D8-B4B8-581B4CBA467A} = {CCB3CE9E-2E44-4809-81D5-E467A98ACA81}
 		{E152DF12-5D82-4D0C-948A-9CD81CEAFA63} = {03ECF957-1117-4A85-8A77-4DAAD4C31560}
+		{76E67B24-A4AE-427E-8362-FBE044C3418C} = {03ECF957-1117-4A85-8A77-4DAAD4C31560}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A9E4329-7D05-49B6-874D-79141BBD287D}

@@ -7,10 +7,14 @@
              x:Class="BiblicalBytes.Views.MainView"
              x:DataType="vm:MainViewModel">
   <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <!--This only sets the DataContext for the previewer in an IDE,
+    to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)-->
     <vm:MainViewModel />
-  </Design.DataContext> 
+  </Design.DataContext>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <Grid RowDefinitions="Auto,*" ColumnDefinitions="200,*">
+      <GridSplitter Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="4"/>
+      <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  </Grid>
+
 </UserControl>
