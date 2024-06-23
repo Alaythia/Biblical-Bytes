@@ -11,7 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "res", "res", "{563A0848-52C
 	ProjectSection(SolutionItems) = preProject
 		res\Alaythia Software 256.ico = res\Alaythia Software 256.ico
 		res\Alaythia Software 32.ico = res\Alaythia Software 32.ico
-
 		res\alaythia-software-logo.ico = res\alaythia-software-logo.ico
 	EndProjectSection
 EndProject
@@ -37,7 +36,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "system", "system", "{FDE40F2E-ECC8-4619-BA8F-D3F419AC027E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes", "src\BiblicalBytes\BiblicalBytes.csproj", "{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
@@ -48,6 +59,7 @@ Global
 		{744B4D2A-B847-412F-8B1C-CAA44F917DF5} = {1663BA74-39D7-4D9F-98A6-3E7F5EE472DA}
 		{91DBF090-D590-4A78-B820-91D38FA60C4E} = {1663BA74-39D7-4D9F-98A6-3E7F5EE472DA}
 		{FDE40F2E-ECC8-4619-BA8F-D3F419AC027E} = {1663BA74-39D7-4D9F-98A6-3E7F5EE472DA}
+		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF} = {CCB3CE9E-2E44-4809-81D5-E467A98ACA81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A9E4329-7D05-49B6-874D-79141BBD287D}
