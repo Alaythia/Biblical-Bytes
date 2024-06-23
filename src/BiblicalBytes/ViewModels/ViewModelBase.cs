@@ -1,8 +1,7 @@
 ﻿using ReactiveUI;
 
-namespace BiblicalBytes.ViewModels
+namespace BiblicalBytes.ViewModels;
+
+public class ViewModelBase : ReactiveObject
 {
-    public class ViewModelBase : ReactiveObject
-    {
-    }
 }
