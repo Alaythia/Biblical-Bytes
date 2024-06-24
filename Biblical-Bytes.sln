@@ -32,11 +32,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{03EC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "application", "application", "{744B4D2A-B847-412F-8B1C-CAA44F917DF5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{91DBF090-D590-4A78-B820-91D38FA60C4E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{91DBF090-D590-4A78-B820-91D38FA60C4E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "system", "system", "{FDE40F2E-ECC8-4619-BA8F-D3F419AC027E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes", "src\BiblicalBytes\BiblicalBytes.csproj", "{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiblicalBytes", "src\BiblicalBytes\BiblicalBytes.csproj", "{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes.Bible", "src\BiblicalBytes.Bible\BiblicalBytes.Bible.csproj", "{2D56CA2B-EFB4-4DC0-BD4B-95AC86DA06A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes.Converters", "src\BiblicalBytes.Converters\BiblicalBytes.Converters.csproj", "{4648A887-31DB-49C4-B46D-A423FC78EF60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes.Contracts", "src\BiblicalBytes.Contracts\BiblicalBytes.Contracts.csproj", "{51BF9392-9ED9-461D-8937-9EA898C261D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +54,18 @@ Global
 		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D56CA2B-EFB4-4DC0-BD4B-95AC86DA06A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D56CA2B-EFB4-4DC0-BD4B-95AC86DA06A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D56CA2B-EFB4-4DC0-BD4B-95AC86DA06A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D56CA2B-EFB4-4DC0-BD4B-95AC86DA06A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4648A887-31DB-49C4-B46D-A423FC78EF60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4648A887-31DB-49C4-B46D-A423FC78EF60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4648A887-31DB-49C4-B46D-A423FC78EF60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4648A887-31DB-49C4-B46D-A423FC78EF60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51BF9392-9ED9-461D-8937-9EA898C261D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51BF9392-9ED9-461D-8937-9EA898C261D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51BF9392-9ED9-461D-8937-9EA898C261D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51BF9392-9ED9-461D-8937-9EA898C261D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +78,9 @@ Global
 		{91DBF090-D590-4A78-B820-91D38FA60C4E} = {1663BA74-39D7-4D9F-98A6-3E7F5EE472DA}
 		{FDE40F2E-ECC8-4619-BA8F-D3F419AC027E} = {1663BA74-39D7-4D9F-98A6-3E7F5EE472DA}
 		{EA0D46E8-ABAA-4F78-BA7B-3A3E988946CF} = {CCB3CE9E-2E44-4809-81D5-E467A98ACA81}
+		{2D56CA2B-EFB4-4DC0-BD4B-95AC86DA06A3} = {03ECF957-1117-4A85-8A77-4DAAD4C31560}
+		{4648A887-31DB-49C4-B46D-A423FC78EF60} = {9AAF78F9-FB8E-4BEA-948E-975A75DFF87E}
+		{51BF9392-9ED9-461D-8937-9EA898C261D5} = {9AAF78F9-FB8E-4BEA-948E-975A75DFF87E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A9E4329-7D05-49B6-874D-79141BBD287D}
