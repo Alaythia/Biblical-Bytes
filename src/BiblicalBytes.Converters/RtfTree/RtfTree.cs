@@ -215,9 +215,9 @@ public class RtfTree
         return sstable;
     }
 
-    public InfoGroup GetInfoGroup()
+    public InfoGroup? GetInfoGroup()
     {
-        InfoGroup info = null;
+        InfoGroup? info = null;
 
         var infoNode = RootNode.SelectSingleNode("info");
 

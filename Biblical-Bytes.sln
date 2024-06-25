@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes.Converters", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiblicalBytes.Contracts", "src\BiblicalBytes.Contracts\BiblicalBytes.Contracts.csproj", "{51BF9392-9ED9-461D-8937-9EA898C261D5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeCollections", "src\TreeCollections\TreeCollections.csproj", "{A02165A9-DBBE-4032-AB36-D590BBBA4988}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{51BF9392-9ED9-461D-8937-9EA898C261D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51BF9392-9ED9-461D-8937-9EA898C261D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51BF9392-9ED9-461D-8937-9EA898C261D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A02165A9-DBBE-4032-AB36-D590BBBA4988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A02165A9-DBBE-4032-AB36-D590BBBA4988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A02165A9-DBBE-4032-AB36-D590BBBA4988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A02165A9-DBBE-4032-AB36-D590BBBA4988}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{2D56CA2B-EFB4-4DC0-BD4B-95AC86DA06A3} = {03ECF957-1117-4A85-8A77-4DAAD4C31560}
 		{4648A887-31DB-49C4-B46D-A423FC78EF60} = {9AAF78F9-FB8E-4BEA-948E-975A75DFF87E}
 		{51BF9392-9ED9-461D-8937-9EA898C261D5} = {9AAF78F9-FB8E-4BEA-948E-975A75DFF87E}
+		{A02165A9-DBBE-4032-AB36-D590BBBA4988} = {9AAF78F9-FB8E-4BEA-948E-975A75DFF87E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A9E4329-7D05-49B6-874D-79141BBD287D}

@@ -1,0 +1,112 @@
+Third-party software notices and information
+
+Do Not Translate or Localize
+
+The Alaythia Project software includes software developed by third parties, 
+including open-source software. This page provides notices and information about 
+the third-party software that is included in The Alaythia Project software.
+
+This file provides information regarding components that are being relicensed to
+you by The Alaythia Project under the The Alaythia Project software licensing terms. 
+The Alaythia Project reserves all rights not expressly granted herein, whether by 
+implication, estoppel or otherwise.
+
+The Alaythia Project is offering you a license to use the following components with 
+"Biblical Bytes" subject to the terms of the The Alaythia Project software license 
+terms for "Biblical Bytes" products (the "The Alaythia Project Program").
+
+The components are provided by third parties and are included in the The Alaythia 
+Project. The components are governed by their own license terms, which can be found
+below. The license terms for the components are provided for your information only.
+
+    1. TreeCollections v2.0.0
+    2. Avalonia v11.0.11
+
+
+## Add other components here
+
+############################################################
+###
+### Follow the template below to add more licenses and 
+### change notifications for components to this file.
+###
+############################################################
+
+1. TreeCollections notices and information begins here
+
+=========================================
+
+Copyright (c) 2016-2024 David West
+All rights reserved.
+
+Original source: https://github.com/davidwest/TreeCollections
+
+Updates by The Alaythia Project
+1. The original source was updated to be compatible with .NET 8.0.
+2. The version of the original source was updated to 2.0.0.
+3. The original source was updated to be compatible with the The Alaythia Project 
+   software license terms for "Biblical Bytes" products.
+
+---LICENSE--------------------------------------------
+
+MIT License
+
+Copyright (c) 2016 David West
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+=========================================
+
+End of TreeCollections notices and information
+
+2. Avalonia notices and information begins here
+
+=========================================
+
+Copyright (c) Contributors of AvaloniaUI
+
+Original source: https://www.nuget.org/packages/Avalonia/11.0.11
+
+---LICENSE--------------------------------------------
+The MIT License (MIT)
+
+Copyright (c) AvaloniaUI All Rights Reserved
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+
+=========================================
+
+End of Avalonia notices and information
+

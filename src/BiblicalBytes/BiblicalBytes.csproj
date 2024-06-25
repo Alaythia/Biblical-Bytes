@@ -14,7 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Acknowledgments\THIRD-PARTY-NOTICIES.txt" />
     <None Remove="Assets\alaythia-software-logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Acknowledgments\THIRD-PARTY-NOTICIES.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

@@ -4,56 +4,49 @@ namespace BiblicalBytes.Converters.RtfTree;
 
 public class RtfTreeNode
 {
-    private RtfNodeType type;
-    private string key;
-    private bool hasParam;
-    private int param;
     private RtfNodeCollection children;
-    private RtfTreeNode parent;
-    private RtfTreeNode root;
-    private RtfTree tree;
 
     public RtfTreeNode()
     {
-        type = RtfNodeType.None;
-        key = "";
+        NodeType = RtfNodeType.None;
+        NodeKey = "";
                 
     }
 
     public RtfTreeNode(RtfNodeType nodeType)
     {
-        type = nodeType;
-        key = "";
+        NodeType = nodeType;
+        NodeKey = "";
 
         if (nodeType == RtfNodeType.Group || nodeType == RtfNodeType.Root)
             children = new RtfNodeCollection();
 
         if (nodeType == RtfNodeType.Root)
-            root = this;
+            RootNode = this;
                 
     }
 
     public RtfTreeNode(RtfNodeType type, string key, bool hasParameter, int parameter)
     {
-        this.type = type;
-        this.key = key;
-        hasParam = hasParameter;
-        param = parameter;
+        this.NodeType = type;
+        this.NodeKey = key;
+        HasParameter = hasParameter;
+        Parameter = parameter;
 
         if (type == RtfNodeType.Group || type == RtfNodeType.Root)
             children = new RtfNodeCollection();
 
         if (type == RtfNodeType.Root)
-            root = this;
+            RootNode = this;
 
     }
 
     internal RtfTreeNode(RtfToken token)
     {
-        type = (RtfNodeType)token.Type;
-        key = token.Key;
-        hasParam = token.HasParameter;
-        param = token.Parameter;
+        NodeType = (RtfNodeType)token.Type;
+        NodeKey = token.Key;
+        HasParameter = token.HasParameter;
+        Parameter = token.Parameter;
 
     }
 
@@ -64,7 +57,7 @@ public class RtfTreeNode
             if (children == null)
                 children = new RtfNodeCollection();
 
-            newNode.parent = this;
+            newNode.ParentNode = this;
 
             UpdateNodeRoot(newNode);
 
@@ -81,7 +74,7 @@ public class RtfTreeNode
 
             if (index >= 0 && index <= children.Count)
             {
-                newNode.parent = this;
+                newNode.ParentNode = this;
 
                 UpdateNodeRoot(newNode);
 
@@ -118,13 +111,13 @@ public class RtfTreeNode
     {
         var clon = new RtfTreeNode();
 
-        clon.key = key;
-        clon.hasParam = hasParam;
-        clon.param = param;
-        clon.parent = null;
-        clon.root = null;
-        clon.tree = null;
-        clon.type = type;
+        clon.NodeKey = NodeKey;
+        clon.HasParameter = HasParameter;
+        clon.Parameter = Parameter;
+        clon.ParentNode = null;
+        clon.RootNode = null;
+        clon.Tree = null;
+        clon.NodeType = NodeType;
 
         clon.children = null;
 
@@ -135,7 +128,7 @@ public class RtfTreeNode
             foreach (RtfTreeNode child in children)
             {
                 var childclon = child.CloneNode();
-                childclon.parent = clon;
+                childclon.ParentNode = clon;
 
                 clon.children.Add(childclon);
             }
@@ -164,7 +157,7 @@ public class RtfTreeNode
         {
             while (i < children.Count && !found)
             {
-                if (children[i].key == keyword)
+                if (children[i].NodeKey == keyword)
                 {
                     node = children[i];
                     found = true;
@@ -187,7 +180,7 @@ public class RtfTreeNode
         {
             while (i < children.Count && !found)
             {
-                if (children[i].type == nodeType)
+                if (children[i].NodeType == nodeType)
                 {
                     node = children[i];
                     found = true;
@@ -210,7 +203,7 @@ public class RtfTreeNode
         {
             while (i < children.Count && !found)
             {
-                if (children[i].key == keyword && children[i].param == param)
+                if (children[i].NodeKey == keyword && children[i].Parameter == param)
                 {
                     node = children[i];
                     found = true;
@@ -265,7 +258,7 @@ public class RtfTreeNode
         {
             while (i < children.Count && !found)
             {
-                if (children[i].type == nodeType)
+                if (children[i].NodeType == nodeType)
                 {
                     node = children[i];
                     found = true;
@@ -297,7 +290,7 @@ public class RtfTreeNode
         {
             while (i < children.Count && !found)
             {
-                if (children[i].key == keyword)
+                if (children[i].NodeKey == keyword)
                 {
                     node = children[i];
                     found = true;
@@ -370,7 +363,7 @@ public class RtfTreeNode
         {
             while (i < children.Count && !found)
             {
-                if (children[i].key == keyword && children[i].param == param)
+                if (children[i].NodeKey == keyword && children[i].Parameter == param)
                 {
                     node = children[i];
                     found = true;
@@ -400,7 +393,7 @@ public class RtfTreeNode
         {
             foreach (RtfTreeNode node in children)
             {
-                if (node.key == keyword)
+                if (node.NodeKey == keyword)
                 {
                     nodes.Add(node);
                 }
@@ -449,7 +442,7 @@ public class RtfTreeNode
         {
             foreach (RtfTreeNode node in children)
             {
-                if (node.type == nodeType)
+                if (node.NodeType == nodeType)
                 {
                     nodes.Add(node);
                 }
@@ -469,7 +462,7 @@ public class RtfTreeNode
         {
             foreach (RtfTreeNode node in children)
             {
-                if (node.key == keyword && node.param == param)
+                if (node.NodeKey == keyword && node.Parameter == param)
                 {
                     nodes.Add(node);
                 }
@@ -489,7 +482,7 @@ public class RtfTreeNode
         {
             foreach (RtfTreeNode node in children)
             {
-                if (node.key == keyword)
+                if (node.NodeKey == keyword)
                 {
                     nodes.Add(node);
                 }
@@ -534,7 +527,7 @@ public class RtfTreeNode
         {
             foreach (RtfTreeNode node in children)
             {
-                if (node.type == nodeType)
+                if (node.NodeType == nodeType)
                 {
                     nodes.Add(node);
                 }
@@ -552,7 +545,7 @@ public class RtfTreeNode
         {
             foreach (RtfTreeNode node in children)
             {
-                if (node.key == keyword && node.param == param)
+                if (node.NodeKey == keyword && node.Parameter == param)
                 {
                     nodes.Add(node);
                 }
@@ -565,7 +558,7 @@ public class RtfTreeNode
     public RtfTreeNode SelectSibling(string keyword)
     {
         RtfTreeNode node = null;
-        var par = parent;
+        var par = ParentNode;
 
         if (par != null)
         {
@@ -576,7 +569,7 @@ public class RtfTreeNode
 
             while (i < par.children.Count && !found)
             {
-                if (par.children[i].key == keyword)
+                if (par.children[i].NodeKey == keyword)
                 {
                     node = par.children[i];
                     found = true;
@@ -592,7 +585,7 @@ public class RtfTreeNode
     public RtfTreeNode SelectSibling(RtfNodeType nodeType)
     {
         RtfTreeNode node = null;
-        var par = parent;
+        var par = ParentNode;
 
         if (par != null)
         {
@@ -603,7 +596,7 @@ public class RtfTreeNode
 
             while (i < par.children.Count && !found)
             {
-                if (par.children[i].type == nodeType)
+                if (par.children[i].NodeType == nodeType)
                 {
                     node = par.children[i];
                     found = true;
@@ -619,7 +612,7 @@ public class RtfTreeNode
     public RtfTreeNode SelectSibling(string keyword, int param)
     {
         RtfTreeNode node = null;
-        var par = parent;
+        var par = ParentNode;
 
         if (par != null)
         {
@@ -630,7 +623,7 @@ public class RtfTreeNode
 
             while (i < par.children.Count && !found)
             {
-                if (par.children[i].key == keyword && par.children[i].param == param)
+                if (par.children[i].NodeKey == keyword && par.children[i].Parameter == param)
                 {
                     node = par.children[i];
                     found = true;
@@ -677,7 +670,7 @@ public class RtfTreeNode
 
     public override string ToString()
     {
-        return "[" + type + ", " + key + ", " + hasParam + ", " + param + "]";
+        return "[" + NodeType + ", " + NodeKey + ", " + HasParameter + ", " + Parameter + "]";
     }
 
     private string DecodeControlChar(int code, Encoding enc)
@@ -689,7 +682,7 @@ public class RtfTreeNode
     {
         var res = "";
 
-        var enc = tree.GetEncoding();
+        var enc = Tree.GetEncoding();
 
         res = GetRtfInm(this, null, enc);
 
@@ -802,9 +795,9 @@ public class RtfTreeNode
 
     private void UpdateNodeRoot(RtfTreeNode node)
     {
-        node.root = root;
+        node.RootNode = RootNode;
 
-        node.tree = tree;
+        node.Tree = Tree;
 
         if (node.children != null)
         {
@@ -854,7 +847,7 @@ public class RtfTreeNode
         else if (NodeType == RtfNodeType.Control)
         {
             if (NodeKey == "'")
-                res.Append(DecodeControlChar(Parameter, tree.GetEncoding()));
+                res.Append(DecodeControlChar(Parameter, Tree.GetEncoding()));
             else if (NodeKey == "~")    
                 res.Append(" ");
         }
@@ -897,89 +890,19 @@ public class RtfTreeNode
         return res.ToString();
     }
 
-    public RtfTreeNode RootNode
-    {
-        get
-        {
-            return root;
-        }
-        set
-        {
-            root = value;
-        }
-    }
+    public RtfTreeNode RootNode { get; set; }
 
-    public RtfTreeNode ParentNode
-    {
-        get
-        {
-            return parent;
-        }
-        set
-        {
-            parent = value;
-        }
-    }
+    public RtfTreeNode ParentNode { get; set; }
 
-    public RtfTree Tree
-    {
-        get
-        {
-            return tree;
-        }
-        set
-        {
-            tree = value;
-        }
-    }
+    public RtfTree Tree { get; set; }
 
-    public RtfNodeType NodeType
-    {
-        get
-        {
-            return type;
-        }
-        set
-        {
-            type = value;
-        }
-    }
+    public RtfNodeType NodeType { get; set; }
 
-    public string NodeKey
-    {
-        get
-        {
-            return key;
-        }
-        set
-        {
-            key = value;
-        }
-    }
+    public string NodeKey { get; set; }
 
-    public bool HasParameter
-    {
-        get
-        {
-            return hasParam;
-        }
-        set
-        {
-            hasParam = value;
-        }
-    }
+    public bool HasParameter { get; set; }
 
-    public int Parameter
-    {
-        get
-        {
-            return param;
-        }
-        set
-        {
-            param = value;
-        }
-    }
+    public int Parameter { get; set; }
 
     public RtfNodeCollection ChildNodes
     {
@@ -993,7 +916,7 @@ public class RtfTreeNode
 
             foreach (RtfTreeNode node in children)
             {
-                node.parent = this;
+                node.ParentNode = this;
 
                 UpdateNodeRoot(node);
             }
@@ -1053,12 +976,12 @@ public class RtfTreeNode
         {
             RtfTreeNode res = null;
 
-            if (parent != null && parent.children != null)
+            if (ParentNode != null && ParentNode.children != null)
             {
-                var currentIndex = parent.children.IndexOf(this);
+                var currentIndex = ParentNode.children.IndexOf(this);
 
-                if (parent.children.Count > currentIndex + 1)
-                    res = parent.children[currentIndex + 1];
+                if (ParentNode.children.Count > currentIndex + 1)
+                    res = ParentNode.children[currentIndex + 1];
             }
 
             return res;
@@ -1071,12 +994,12 @@ public class RtfTreeNode
         {
             RtfTreeNode res = null;
 
-            if (parent != null && parent.children != null)
+            if (ParentNode != null && ParentNode.children != null)
             {
-                var currentIndex = parent.children.IndexOf(this);
+                var currentIndex = ParentNode.children.IndexOf(this);
 
                 if (currentIndex > 0)
-                    res = parent.children[currentIndex - 1];
+                    res = ParentNode.children[currentIndex - 1];
             }
 
             return res;
@@ -1093,7 +1016,7 @@ public class RtfTreeNode
             {
                 res = FirstChild;
             }
-            else if (parent != null && parent.children != null)
+            else if (ParentNode != null && ParentNode.children != null)
             {
                 if (NodeType == RtfNodeType.Group && children.Count > 0)
                 {
@@ -1101,13 +1024,13 @@ public class RtfTreeNode
                 }
                 else
                 {
-                    if (Index < (parent.children.Count - 1))
+                    if (Index < (ParentNode.children.Count - 1))
                     {
                         res = NextSibling;
                     }
                     else
                     {
-                        res = parent.NextSibling;
+                        res = ParentNode.NextSibling;
                     }
                 }
             }
@@ -1126,7 +1049,7 @@ public class RtfTreeNode
             {
                 res = null;
             }
-            else if (parent != null && parent.children != null)
+            else if (ParentNode != null && ParentNode.children != null)
             {
                 if (Index > 0)
                 {
@@ -1141,7 +1064,7 @@ public class RtfTreeNode
                 }
                 else
                 {
-                    res = parent;
+                    res = ParentNode;
                 }
             }
 
@@ -1163,8 +1086,8 @@ public class RtfTreeNode
         {
             var res = -1;
 
-            if(parent != null)
-                res = parent.children.IndexOf(this);
+            if(ParentNode != null)
+                res = ParentNode.children.IndexOf(this);
 
             return res;
         }
