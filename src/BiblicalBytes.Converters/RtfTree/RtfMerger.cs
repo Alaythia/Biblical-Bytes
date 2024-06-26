@@ -4,10 +4,10 @@ namespace BiblicalBytes.Converters.RtfTree;
 
 public class RtfMerger
 {
-    private RtfTree baseRtfDoc = null;
+    private RtfTree baseRtfDoc;
     private bool removeLastPar;
 
-    private readonly Dictionary<string, RtfTree> placeHolder = null;
+    private readonly Dictionary<string, RtfTree> placeHolder;
 
     public RtfMerger(string templatePath)
     {

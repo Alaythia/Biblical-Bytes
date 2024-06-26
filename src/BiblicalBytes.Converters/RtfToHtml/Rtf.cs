@@ -6,12 +6,12 @@ namespace BiblicalBytes.Converters.RtfToHtml;
 
 internal class Rtf
 {
-    private Table table = null;
+    private Table table;
 
     private readonly string rtfHeaderOpening;
     private string rtfHeaderContent;
     private readonly string rtfClosing;
-    private HtmlNode prevTag = null;
+    private HtmlNode prevTag;
 
     private List<Reference> rtfContentReferences = new List<Reference>();
     public Rtf()

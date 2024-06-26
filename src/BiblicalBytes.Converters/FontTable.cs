@@ -43,7 +43,7 @@ public class FontTable(IDictionary<int, string> fonts, ILogger logger) : IStyleT
     /// Gets the number of fonts in the table.
     /// </summary>
     public int Count => fonts.Count;
-    
+
     /// <summary>
     /// Finds the index of a font by its name.
     /// </summary>
@@ -53,6 +53,24 @@ public class FontTable(IDictionary<int, string> fonts, ILogger logger) : IStyleT
 
     {
         return fonts.FirstOrDefault(x => x.Value.Equals(name)).Key;
+    }
+
+    /// <summary>
+    /// Removes a font by index from the font table.
+    /// </summary>
+    /// <param name="index">The index of the font to remove.</param>
+    public void Remove(int index)
+    {
+        fonts.Remove(index);
+    }
+
+    /// <summary>
+    /// Removes a font by name from the font table.
+    /// </summary>
+    /// <param name="font">The name of the font to remove.</param>
+    public void Remove(string font)
+    {
+        fonts.Remove(fonts.FirstOrDefault(x => x.Value.Equals(font)).Key);
     }
 
     /// <summary>

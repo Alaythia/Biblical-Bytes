@@ -16,9 +16,9 @@ internal class Html
     private StringBuilder builder;
     private Format htmlFormat;
     private List<Format> formatList;
-    private int spanCount = 0;
-    private int divCount = 0;
-    private bool hasHref = false;
+    private int spanCount;
+    private int divCount;
+    private bool hasHref;
     private RtfColorTable colorTable;
     private RtfFontTable fontTable;
     private bool autoParagraph;
@@ -691,9 +691,9 @@ internal class Html
         public bool Subscript;
         public bool Strike;
         public bool Underline;
-        public bool IsLi = false;
+        public bool IsLi;
         public bool Superscript;
-        public bool HasHref = false;
+        public bool HasHref;
         public string FontName;
         public int FontSize;
         public System.Drawing.Color ForeColor;

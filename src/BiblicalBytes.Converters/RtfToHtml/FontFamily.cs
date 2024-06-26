@@ -2,7 +2,7 @@
 
 internal static class FontTable
 {
-    public static int Amount = 0;
+    public static int Amount;
     public static List<string> Font = new List<string>();
         
 }

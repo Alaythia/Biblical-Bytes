@@ -33,7 +33,26 @@ public interface IStyleTable<T>
     /// <summary>
     /// Finds the index of a font by its name.
     /// </summary>
-    /// <param name="obj">The object to find.</param>
+    /// <param name="name">The name of the object to find.</param>
     /// <returns>The index of the object if found; otherwise, the default key value indicating not found.</returns>
+    int IndexOf(string name);
+
+    /// <summary>
+    /// Finds the index of an object.
+    /// </summary>
+    /// <param name="obj">The object to find.</param>
+    /// <returns>The index of the found object.</returns>
     int IndexOf(T obj);
+
+    /// <summary>
+    /// Removes an object by index from the table.
+    /// </summary>
+    /// <param name="index">The index of the object to remove.</param>
+    void Remove(int index);
+
+    /// <summary>
+    /// Removes an object from the table.
+    /// </summary>
+    /// <param name="obj">The object to remove.</param>
+    void Remove(T obj);
 }

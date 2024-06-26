@@ -4,7 +4,7 @@ namespace BiblicalBytes.Converters.RtfTree;
 
 public class RtfStyleSheetTable
 {
-    private readonly Dictionary<int, RtfStyleSheet> stylesheets = null;
+    private readonly Dictionary<int, RtfStyleSheet> stylesheets;
 
     public RtfStyleSheetTable()
     {

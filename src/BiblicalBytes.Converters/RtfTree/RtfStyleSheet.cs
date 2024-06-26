@@ -2,44 +2,44 @@
 
 public class RtfStyleSheet
 {
-    public int Index { get; set; } = 0;
+    public int Index { get; set; }
 
     public string Name { get; set; } = "";
 
     public RtfStyleSheetType Type { get; set; } = RtfStyleSheetType.Paragraph;
 
-    public bool Additive { get; set; } = false;
+    public bool Additive { get; set; }
 
     public int BasedOn { get; set; } = -1;
 
     public int Next { get; set; } = -1;
 
-    public bool AutoUpdate { get; set; } = false;
+    public bool AutoUpdate { get; set; }
 
-    public bool Hidden { get; set; } = false;
+    public bool Hidden { get; set; }
 
     public int Link { get; set; } = -1;
 
-    public bool Locked { get; set; } = false;
+    public bool Locked { get; set; }
 
-    public bool Personal { get; set; } = false;
+    public bool Personal { get; set; }
 
-    public bool Compose { get; set; } = false;
+    public bool Compose { get; set; }
 
-    public bool Reply { get; set; } = false;
+    public bool Reply { get; set; }
 
     public int Styrsid { get; set; } = -1;
 
-    public bool SemiHidden { get; set; } = false;
+    public bool SemiHidden { get; set; }
 
-    public RtfNodeCollection KeyCode { get; set; } = null;
+    public RtfNodeCollection? KeyCode { get; set; }
 
-    public RtfNodeCollection Formatting { get; set; } = null;
+    public RtfNodeCollection? Formatting { get; set; }
 
     public RtfStyleSheet()
     {
         KeyCode = null;
-        Formatting = new RtfNodeCollection();
+        Formatting = [];
     }
 
 }

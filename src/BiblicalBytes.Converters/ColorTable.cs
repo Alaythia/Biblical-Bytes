@@ -49,7 +49,59 @@ public class ColorTable(IDictionary<int, Color> colors, ILogger logger) : IStyle
     /// <returns>The index of the color if found; otherwise, the default key value indicating not found.</returns>
     public int IndexOf(Color color)
     {
-        return colors.FirstOrDefault(x => x.Value.Equals(color)).Key;
+        const int notFound = -1;
+
+        try
+        {
+            return colors.Count == 0 
+                ? notFound 
+                : colors.First(x => x.Value.Equals(color)).Key;
+        }
+        catch (Exception e)
+        {
+            return notFound;
+        }
+    }
+
+    /// <summary>
+    /// Finds the index of a color by its name.
+    /// </summary>
+    /// <param name="name">The name of the color to find.</param>
+    /// <returns>The index of the found color.</returns>
+    public int IndexOf(string name)
+    {
+        const int notFound = -1;
+
+        try
+        {
+            return colors.Count == 0
+                ? notFound
+                : colors.First(x => x.Value.Name.Equals(name)).Key;
+        }
+        catch (Exception e)
+        {
+            return notFound;
+        }
+    }
+
+    /// <summary>
+    /// Removes a color by index from the color table.
+    /// </summary>
+    /// <param name="index">The index of the color to remove.</param>
+    public void Remove(int index)
+    {
+        colors.Remove(index);
+    }
+
+    /// <summary>
+    /// Removes a color from the color table.
+    /// </summary>
+    /// <param name="color">The color to remove.</param>
+    public void Remove(Color color)
+    {
+        var index = IndexOf(color);
+        if (index != -1)
+            colors.Remove(index);
     }
 
     /// <summary>
