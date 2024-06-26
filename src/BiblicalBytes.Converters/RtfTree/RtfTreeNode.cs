@@ -6,6 +6,7 @@ public class RtfTreeNode
 {
     private RtfNodeCollection children;
 
+    #region Constructors
     public RtfTreeNode()
     {
         NodeType = RtfNodeType.None;
@@ -49,10 +50,232 @@ public class RtfTreeNode
         Parameter = token.Parameter;
 
     }
+    #endregion
+
+    public RtfTreeNode RootNode { get; set; }
+
+    public RtfTreeNode ParentNode { get; set; }
+
+    public RtfTree Tree { get; set; }
+
+    public RtfNodeType NodeType { get; set; }
+
+    public string NodeKey { get; set; }
+
+    public bool HasParameter { get; set; }
+
+    public int Parameter { get; set; }
+
+    public string Rtf
+    {
+        get
+        {
+            return GetRtf();
+        }
+    }
+
+    public int Index
+    {
+        get
+        {
+            var res = -1;
+
+            if (ParentNode != null)
+                res = ParentNode.children.IndexOf(this);
+
+            return res;
+        }
+    }
+
+    public string Text
+    {
+        get
+        {
+            return GetText(false);
+        }
+    }
+
+    public string RawText
+    {
+        get
+        {
+            return GetText(true);
+        }
+    }
+
+    #region Navigation and Node Selection
+
+    public RtfNodeCollection ChildNodes
+    {
+        get
+        {
+            return children;
+        }
+        set
+        {
+            children = value;
+
+            foreach (RtfTreeNode node in children)
+            {
+                node.ParentNode = this;
+
+                UpdateNodeRoot(node);
+            }
+        }
+    }
+
+    public RtfTreeNode this[string keyword]
+    {
+        get
+        {
+            return SelectSingleChildNode(keyword);
+        }
+    }
+
+    public RtfTreeNode this[int childIndex]
+    {
+        get
+        { 
+            RtfTreeNode res = null;
+
+            if (children != null && childIndex >= 0 && childIndex < children.Count)
+                res = children[childIndex];
+
+            return res;
+        }
+    }
+
+    public RtfTreeNode FirstChild
+    {
+        get
+        {
+            RtfTreeNode res = null;
+
+            if (children != null && children.Count > 0)
+                res = children[0];
+
+            return res;
+        }
+    }
+
+    public RtfTreeNode LastChild
+    {
+        get
+        {
+            RtfTreeNode res = null;
+
+            if (children != null && children.Count > 0)
+                return children[children.Count - 1];
+
+            return res;
+        }
+    }
+
+    public RtfTreeNode NextSibling
+    {
+        get
+        {
+            RtfTreeNode res = null;
+
+            if (ParentNode != null && ParentNode.children != null)
+            {
+                var currentIndex = ParentNode.children.IndexOf(this);
+
+                if (ParentNode.children.Count > currentIndex + 1)
+                    res = ParentNode.children[currentIndex + 1];
+            }
+
+            return res;
+        }
+    }
+
+    public RtfTreeNode PreviousSibling
+    {
+        get
+        {
+            RtfTreeNode res = null;
+
+            if (ParentNode != null && ParentNode.children != null)
+            {
+                var currentIndex = ParentNode.children.IndexOf(this);
+
+                if (currentIndex > 0)
+                    res = ParentNode.children[currentIndex - 1];
+            }
+
+            return res;
+        }
+    }
+
+    public RtfTreeNode NextNode
+    {
+        get
+        {
+            RtfTreeNode res = null;
+
+            if (NodeType == RtfNodeType.Root)
+            {
+                res = FirstChild;
+            }
+            else if (ParentNode != null && ParentNode.children != null)
+            {
+                if (NodeType == RtfNodeType.Group && children.Count > 0)
+                {
+                    res = FirstChild;
+                }
+                else
+                {
+                    if (Index < (ParentNode.children.Count - 1))
+                    {
+                        res = NextSibling;
+                    }
+                    else
+                    {
+                        res = ParentNode.NextSibling;
+                    }
+                }
+            }
+
+            return res;
+        }
+    }
+
+    public RtfTreeNode PreviousNode
+    {
+        get
+        {
+            RtfTreeNode res = null;
+
+            if (NodeType == RtfNodeType.Root)
+            {
+                res = null;
+            }
+            else if (ParentNode != null && ParentNode.children != null)
+            {
+                if (Index > 0)
+                {
+                    if (PreviousSibling.NodeType == RtfNodeType.Group)
+                    {
+                        res = PreviousSibling.LastChild;
+                    }
+                    else
+                    {
+                        res = PreviousSibling;
+                    }
+                }
+                else
+                {
+                    res = ParentNode;
+                }
+            }
+
+            return res;
+        }
+    }
 
     public void AppendChild(RtfTreeNode newNode)
     {
-        if(newNode != null)
+        if (newNode != null)
         {
             if (children == null)
                 children = new RtfNodeCollection();
@@ -635,6 +858,7 @@ public class RtfTreeNode
 
         return node;
     }
+#endregion
 
     public RtfNodeCollection FindText(string text)
     {
@@ -646,7 +870,7 @@ public class RtfTreeNode
             {
                 if (node.NodeType == RtfNodeType.Text && node.NodeKey.IndexOf(text) != -1)
                     list.Add(node);
-                else if(node.NodeType == RtfNodeType.Group)
+                else if (node.NodeType == RtfNodeType.Group)
                     list.AddRange(node.FindText(text));
             }
         }
@@ -704,7 +928,7 @@ public class RtfTreeNode
             {
                 res.Append("\\");
             }
-            else    
+            else
             {
                 if (prevNode != null &&
                     prevNode.NodeType == RtfNodeType.Keyword)
@@ -727,7 +951,7 @@ public class RtfTreeNode
                 else if (curNode.NodeType == RtfNodeType.Control)
                 {
                     if (curNode.NodeKey == "\'")
-                    {						
+                    {
                         res.Append(GetHexa(curNode.Parameter));
                     }
                 }
@@ -848,7 +1072,7 @@ public class RtfTreeNode
         {
             if (NodeKey == "'")
                 res.Append(DecodeControlChar(Parameter, Tree.GetEncoding()));
-            else if (NodeKey == "~")    
+            else if (NodeKey == "~")
                 res.Append(" ");
         }
         else if (NodeType == RtfNodeType.Text)
@@ -889,224 +1113,4 @@ public class RtfTreeNode
 
         return res.ToString();
     }
-
-    public RtfTreeNode RootNode { get; set; }
-
-    public RtfTreeNode ParentNode { get; set; }
-
-    public RtfTree Tree { get; set; }
-
-    public RtfNodeType NodeType { get; set; }
-
-    public string NodeKey { get; set; }
-
-    public bool HasParameter { get; set; }
-
-    public int Parameter { get; set; }
-
-    public RtfNodeCollection ChildNodes
-    {
-        get
-        {
-            return children;
-        }
-        set
-        {
-            children = value;
-
-            foreach (RtfTreeNode node in children)
-            {
-                node.ParentNode = this;
-
-                UpdateNodeRoot(node);
-            }
-        }
-    }
-
-    public RtfTreeNode this[string keyword]
-    {
-        get
-        {
-            return SelectSingleChildNode(keyword);
-        }
-    }
-
-    public RtfTreeNode this[int childIndex]
-    {
-        get
-        { 
-            RtfTreeNode res = null;
-
-            if (children != null && childIndex >= 0 && childIndex < children.Count)
-                res = children[childIndex];
-
-            return res;
-        }
-    }
-
-    public RtfTreeNode FirstChild
-    {
-        get
-        {
-            RtfTreeNode res = null;
-
-            if (children != null && children.Count > 0)
-                res = children[0];
-
-            return res;
-        }
-    }
-
-    public RtfTreeNode LastChild
-    {
-        get
-        {
-            RtfTreeNode res = null;
-
-            if (children != null && children.Count > 0)
-                return children[children.Count - 1];
-
-            return res;
-        }
-    }
-
-    public RtfTreeNode NextSibling
-    {
-        get
-        {
-            RtfTreeNode res = null;
-
-            if (ParentNode != null && ParentNode.children != null)
-            {
-                var currentIndex = ParentNode.children.IndexOf(this);
-
-                if (ParentNode.children.Count > currentIndex + 1)
-                    res = ParentNode.children[currentIndex + 1];
-            }
-
-            return res;
-        }
-    }
-
-    public RtfTreeNode PreviousSibling
-    {
-        get
-        {
-            RtfTreeNode res = null;
-
-            if (ParentNode != null && ParentNode.children != null)
-            {
-                var currentIndex = ParentNode.children.IndexOf(this);
-
-                if (currentIndex > 0)
-                    res = ParentNode.children[currentIndex - 1];
-            }
-
-            return res;
-        }
-    }
-
-    public RtfTreeNode NextNode
-    {
-        get
-        {
-            RtfTreeNode res = null;
-
-            if (NodeType == RtfNodeType.Root)
-            {
-                res = FirstChild;
-            }
-            else if (ParentNode != null && ParentNode.children != null)
-            {
-                if (NodeType == RtfNodeType.Group && children.Count > 0)
-                {
-                    res = FirstChild;
-                }
-                else
-                {
-                    if (Index < (ParentNode.children.Count - 1))
-                    {
-                        res = NextSibling;
-                    }
-                    else
-                    {
-                        res = ParentNode.NextSibling;
-                    }
-                }
-            }
-
-            return res;
-        }
-    }
-
-    public RtfTreeNode PreviousNode
-    {
-        get
-        {
-            RtfTreeNode res = null;
-
-            if (NodeType == RtfNodeType.Root)
-            {
-                res = null;
-            }
-            else if (ParentNode != null && ParentNode.children != null)
-            {
-                if (Index > 0)
-                {
-                    if (PreviousSibling.NodeType == RtfNodeType.Group)
-                    {
-                        res = PreviousSibling.LastChild;
-                    }
-                    else
-                    {
-                        res = PreviousSibling;
-                    }
-                }
-                else
-                {
-                    res = ParentNode;
-                }
-            }
-
-            return res;
-        }
-    }
-
-    public string Rtf
-    {
-        get
-        {
-            return GetRtf();
-        }
-    }
-
-    public int Index
-    {
-        get
-        {
-            var res = -1;
-
-            if(ParentNode != null)
-                res = ParentNode.children.IndexOf(this);
-
-            return res;
-        }
-    }
-
-    public string Text
-    {
-        get
-        {
-            return GetText(false);
-        }
-    }
-
-    public string RawText
-    {
-        get
-        {
-            return GetText(true);
-        }
-    }
-
 }
