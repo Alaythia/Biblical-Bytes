@@ -6,12 +6,12 @@ namespace BiblicalBytes.Converters.Tests;
 
 public class StylesheetTableTests
 {
+    private readonly Mock<ILogger> mockLogger = new Mock<ILogger>();
     private readonly Dictionary<int, RtfStyleSheet> stylesheets = new();
     private readonly StylesheetTable stylesheetTable;
 
     public StylesheetTableTests()
     {
-        Mock<ILogger> mockLogger = new();
         stylesheetTable = new StylesheetTable(stylesheets, mockLogger.Object);
     }
 
@@ -40,6 +40,21 @@ public class StylesheetTableTests
 
         // Assert
         Assert.Equal(styleSheet, stylesheets[index]);
+    }
+
+    [Fact]
+    public void Add_WithExistingIndex_LogsWarning()
+    {
+        // Arrange
+        var index = 1;
+        var styleSheet = new RtfStyleSheet { Name = "TestStyle" };
+        stylesheetTable.Add(index, styleSheet);
+
+        // Act
+        stylesheetTable.Add(index, styleSheet);
+
+        // Assert
+        mockLogger.Verify(logger => logger.Warning(It.IsAny<string>()), Times.Once);
     }
 
     [Fact]

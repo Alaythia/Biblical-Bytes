@@ -26,7 +26,9 @@ public class StylesheetTable(IDictionary<int, RtfStyleSheet> stylesheets, ILogge
     /// <param name="styleSheet">The stylesheet to add.</param>
     public void Add(int index, RtfStyleSheet styleSheet)
     {
-        stylesheets.Add(index, styleSheet);
+        if(!stylesheets.TryAdd(index, styleSheet))
+            logger.Warning($"Stylesheet with index {index} already exists in the table.");
+        
     }
 
     /// <summary>
