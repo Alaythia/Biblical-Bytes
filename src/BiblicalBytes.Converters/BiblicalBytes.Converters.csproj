@@ -9,11 +9,12 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.1.2" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
-    <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BiblicalBytes.Contracts\BiblicalBytes.Contracts.csproj" />
+    <ProjectReference Include="..\TreeCollections\TreeCollections.csproj" />
   </ItemGroup>
 
 </Project>

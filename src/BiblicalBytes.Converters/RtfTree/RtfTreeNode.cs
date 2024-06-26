@@ -4,8 +4,6 @@ namespace BiblicalBytes.Converters.RtfTree;
 
 public class RtfTreeNode
 {
-    private RtfNodeCollection children;
-
     #region Constructors
     public RtfTreeNode()
     {
@@ -51,12 +49,6 @@ public class RtfTreeNode
 
     }
     #endregion
-
-    public RtfTreeNode RootNode { get; set; }
-
-    public RtfTreeNode ParentNode { get; set; }
-
-    public RtfTree Tree { get; set; }
 
     public RtfNodeType NodeType { get; set; }
 
@@ -104,6 +96,13 @@ public class RtfTreeNode
     }
 
     #region Navigation and Node Selection
+    private RtfNodeCollection children;
+
+    public RtfTreeNode RootNode { get; set; }
+
+    public RtfTreeNode ParentNode { get; set; }
+
+    public RtfTree Tree { get; set; }
 
     public RtfNodeCollection ChildNodes
     {
@@ -902,6 +901,57 @@ public class RtfTreeNode
         return enc.GetString(new byte[] { (byte)code });
     }
 
+    private void AppendEncoded(StringBuilder res, string s, Encoding enc)
+    {
+        for (var i = 0; i < s.Length; i++)
+        {
+            var code = Char.ConvertToUtf32(s, i);
+
+            if (code >= 128 || code < 32)
+            {
+                res.Append(@"\'");
+                var bytes = enc.GetBytes(new char[] { s[i] });
+                res.Append(GetHexa(bytes[0]));
+            }
+            else
+            {
+                if ((s[i] == '{') || (s[i] == '}') || (s[i] == '\\'))
+                {
+                    res.Append(@"\");
+                }
+
+                res.Append(s[i]);
+            }
+        }
+    }
+
+    private string GetHexa(int code)
+    {
+        var hexa = Convert.ToString(code, 16);
+
+        if (hexa.Length == 1)
+        {
+            hexa = "0" + hexa;
+        }
+
+        return hexa;
+    }
+
+    private void UpdateNodeRoot(RtfTreeNode node)
+    {
+        node.RootNode = RootNode;
+
+        node.Tree = Tree;
+
+        if (node.children != null)
+        {
+            foreach (RtfTreeNode nod in node.children)
+            {
+                UpdateNodeRoot(nod);
+            }
+        }
+    }
+
     private string GetRtf()
     {
         var res = "";
@@ -979,57 +1029,6 @@ public class RtfTreeNode
         }
 
         return res.ToString();
-    }
-
-    private void AppendEncoded(StringBuilder res, string s, Encoding enc)
-    {
-        for (var i = 0; i < s.Length; i++)
-        {
-            var code = Char.ConvertToUtf32(s, i);
-
-            if (code >= 128 || code < 32)
-            {
-                res.Append(@"\'");
-                var bytes = enc.GetBytes(new char[] { s[i] });
-                res.Append(GetHexa(bytes[0]));
-            }
-            else
-            {
-                if ((s[i] == '{') || (s[i] == '}') || (s[i] == '\\'))
-                {
-                    res.Append(@"\");
-                }
-
-                res.Append(s[i]);
-            }
-        }
-    }
-
-    private string GetHexa(int code)
-    {
-        var hexa = Convert.ToString(code, 16);
-
-        if (hexa.Length == 1)
-        {
-            hexa = "0" + hexa;
-        }
-
-        return hexa;
-    }
-
-    private void UpdateNodeRoot(RtfTreeNode node)
-    {
-        node.RootNode = RootNode;
-
-        node.Tree = Tree;
-
-        if (node.children != null)
-        {
-            foreach (RtfTreeNode nod in node.children)
-            {
-                UpdateNodeRoot(nod);
-            }
-        }
     }
 
     private string GetText(bool raw)
