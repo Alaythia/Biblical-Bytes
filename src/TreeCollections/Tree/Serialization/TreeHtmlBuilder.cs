@@ -12,15 +12,15 @@ namespace TreeCollections.Tree.Serialization;
 /// <typeparam name="TNode"></typeparam>
 public class TreeHtmlBuilder<TNode> where TNode : TreeNode<TNode>
 {
-    private readonly HtmlBuildDefinition<TNode> _def;
+    private readonly HtmlBuildDefinition<TNode> def;
 
-    private Func<TNode, bool> _allowNext;
-    private int _maxRelativeDepth;
-    private StringBuilder _builder;
+    private Func<TNode, bool> allowNext;
+    private int maxRelativeDepth;
+    private StringBuilder builder;
 
     public TreeHtmlBuilder(HtmlBuildDefinition<TNode> def = null)
     {
-            _def = def ?? new HtmlBuildDefinition<TNode>();
+            this.def = def ?? new HtmlBuildDefinition<TNode>();
         }
 
     /// <summary>
@@ -72,56 +72,56 @@ public class TreeHtmlBuilder<TNode> where TNode : TreeNode<TNode>
     {
             if (!allowNext(root) || maxRelativeDepth < 0) return string.Empty;
 
-            _allowNext = allowNext;
-            _maxRelativeDepth = maxRelativeDepth;
-            _builder = new StringBuilder();
+            this.allowNext = allowNext;
+            this.maxRelativeDepth = maxRelativeDepth;
+            builder = new StringBuilder();
 
             if (includeRoot)
             {
-                _builder.Append($"<{_def.RootElementName}{SerializeAttributes(_def.GetRootAttributes(root))}>");
-                _builder.Append(_def.GetRootPreHtml(root));
+                builder.Append($"<{def.RootElementName}{SerializeAttributes(def.GetRootAttributes(root))}>");
+                builder.Append(def.GetRootPreHtml(root));
 
                 BuildItem(root, 0);
 
-                _builder.Append(_def.GetRootPostHtml(root));
-                _builder.Append($"</{_def.RootElementName}>");
+                builder.Append(def.GetRootPostHtml(root));
+                builder.Append($"</{def.RootElementName}>");
             }
             else
             {
                 BuildChildren(root, 0);
             }
             
-            return _builder.ToString();
+            return builder.ToString();
         }
 
     private void BuildItem(TNode node, int curDepth)
     {
-            _builder.Append($"<{_def.ItemElementName}{SerializeAttributes(_def.GetItemAttributes(node))}>");
-            _builder.Append(_def.GetItemPreHtml(node));
+            builder.Append($"<{def.ItemElementName}{SerializeAttributes(def.GetItemAttributes(node))}>");
+            builder.Append(def.GetItemPreHtml(node));
 
             if (node.Children.Count != 0)
             {
                 BuildChildren(node, curDepth);
             }
             
-            _builder.Append(_def.GetItemPostHtml(node));
-            _builder.Append($"</{_def.ItemElementName}>");
+            builder.Append(def.GetItemPostHtml(node));
+            builder.Append($"</{def.ItemElementName}>");
         }
 
     private void BuildChildren(TNode node, int curDepth)
     {
-            if (curDepth++ == _maxRelativeDepth) return;
+            if (curDepth++ == maxRelativeDepth) return;
 
-            _builder.Append($"<{_def.ContainerElementName}{SerializeAttributes(_def.GetContainerAttributes(node))}>");
-            _builder.Append(_def.GetContainerPreHtml(node));
+            builder.Append($"<{def.ContainerElementName}{SerializeAttributes(def.GetContainerAttributes(node))}>");
+            builder.Append(def.GetContainerPreHtml(node));
 
-            foreach (var child in node.Children.Where(_allowNext))
+            foreach (var child in node.Children.Where(allowNext))
             {
                 BuildItem(child, curDepth);
             }
 
-            _builder.Append(_def.GetContainerPostHtml(node));
-            _builder.Append($"</{_def.ContainerElementName}>");
+            builder.Append(def.GetContainerPostHtml(node));
+            builder.Append($"</{def.ContainerElementName}>");
         }
 
     private static string SerializeAttributes(IDictionary<string, string> attributes)

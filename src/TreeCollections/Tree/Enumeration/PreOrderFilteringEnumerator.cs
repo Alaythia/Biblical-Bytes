@@ -13,17 +13,17 @@ namespace TreeCollections.Tree.Enumeration;
 public class PreOrderFilteringEnumerator<TNode> : IEnumerator<TNode>
     where TNode : TreeNode<TNode>
 {
-    private readonly TNode _rootOfIteration;
-    private readonly int _maxLevel;
-    private readonly Func<TNode, bool> _allowNext; 
+    private readonly TNode rootOfIteration;
+    private readonly int maxLevel;
+    private readonly Func<TNode, bool> allowNext; 
 
     internal PreOrderFilteringEnumerator(TNode rootOfIteration, 
         Func<TNode, bool> allowNext, 
         int? maxRelativeDepth = null)
     {
-            _rootOfIteration = rootOfIteration;
-            _maxLevel = rootOfIteration.Level + maxRelativeDepth ?? int.MaxValue;
-            _allowNext = allowNext;
+            this.rootOfIteration = rootOfIteration;
+            maxLevel = rootOfIteration.Level + maxRelativeDepth ?? int.MaxValue;
+            this.allowNext = allowNext;
             
             Current = null;
         } 
@@ -32,32 +32,32 @@ public class PreOrderFilteringEnumerator<TNode> : IEnumerator<TNode>
     {
             if (Current == null)
             {
-                Current = _rootOfIteration;
+                Current = rootOfIteration;
                 return true;
             }
 
-            var firstChild = Current.Children.FirstOrDefault(_allowNext);
+            var firstChild = Current.Children.FirstOrDefault(allowNext);
 
-            if (firstChild != null && firstChild.Level <= _maxLevel)
+            if (firstChild != null && firstChild.Level <= maxLevel)
             {
                 Current = firstChild;
                 return true;
             }
 
-            if (Current.Equals(_rootOfIteration))
+            if (Current.Equals(rootOfIteration))
             {
                 return false;
             }
 
             var node = Current;
 
-            var nextSibling = Current.SelectSiblingsAfter().FirstOrDefault(_allowNext);
+            var nextSibling = Current.SelectSiblingsAfter().FirstOrDefault(allowNext);
 
             while (nextSibling == null)
             {
                 node = node.Parent;
 
-                if (node.Equals(_rootOfIteration))
+                if (node.Equals(rootOfIteration))
                 {
                     return false;
                 }

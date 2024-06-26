@@ -10,21 +10,21 @@ namespace TreeCollections.Tree.Enumeration;
 public class LevelOrderEnumerator<TNode> : IEnumerator<TNode>
     where TNode : TreeNode<TNode>
 {
-    private readonly TNode _rootOfIteration;
-    private readonly int _maxDepth;
-    private readonly Queue<TNode> _queue;
-    private int _currentDepth;
-    private int _currentGenerationCount;
-    private int _nextGenerationCount;
+    private readonly TNode rootOfIteration;
+    private readonly int maxDepth;
+    private readonly Queue<TNode> queue;
+    private int currentDepth;
+    private int currentGenerationCount;
+    private int nextGenerationCount;
         
     internal LevelOrderEnumerator(TNode rootOfIteration, int? maxRelativeDepth = null)
     {
-            _rootOfIteration = rootOfIteration;
-            _currentDepth = 0;
-            _queue = new Queue<TNode>();
-            _currentGenerationCount = 1;
-            _nextGenerationCount = 0;
-            _maxDepth = maxRelativeDepth ?? int.MaxValue;
+            this.rootOfIteration = rootOfIteration;
+            currentDepth = 0;
+            queue = new Queue<TNode>();
+            currentGenerationCount = 1;
+            nextGenerationCount = 0;
+            maxDepth = maxRelativeDepth ?? int.MaxValue;
 
             Current = null;
         }
@@ -33,22 +33,22 @@ public class LevelOrderEnumerator<TNode> : IEnumerator<TNode>
     {
             if (Current == null)
             {
-                Current = _rootOfIteration;
+                Current = rootOfIteration;
                 ProcessCurrent();
                 return true;
             }
 
-            if (_queue.Count == 0)
+            if (queue.Count == 0)
             {
                 return false;
             }
 
-            if (_currentGenerationCount == 0)
+            if (currentGenerationCount == 0)
             {
                 SwapGeneration();
             }
 
-            Current = _queue.Dequeue();
+            Current = queue.Dequeue();
             ProcessCurrent();
 
             return true;
@@ -56,22 +56,22 @@ public class LevelOrderEnumerator<TNode> : IEnumerator<TNode>
 
     private void ProcessCurrent()
     {
-            _currentGenerationCount--;
+            currentGenerationCount--;
 
-            if (_currentDepth >= _maxDepth) return;
+            if (currentDepth >= maxDepth) return;
 
             foreach (var child in Current.Children)
             {
-                _nextGenerationCount++;
-                _queue.Enqueue(child);
+                nextGenerationCount++;
+                queue.Enqueue(child);
             }
         }
 
     private void SwapGeneration()
     {
-            _currentDepth++;
-            _currentGenerationCount = _nextGenerationCount;
-            _nextGenerationCount = 0;
+            currentDepth++;
+            currentGenerationCount = nextGenerationCount;
+            nextGenerationCount = 0;
         }
 
     public TNode Current { get; private set; }

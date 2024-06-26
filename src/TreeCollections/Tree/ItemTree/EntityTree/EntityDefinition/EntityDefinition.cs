@@ -11,7 +11,7 @@ namespace TreeCollections.Tree.ItemTree.EntityTree.EntityDefinition;
 /// <typeparam name="TItem"></typeparam>
 public class EntityDefinition<TId, TItem> : IEntityDefinition<TId, TItem>
 {
-    private readonly Func<TItem, TId> _getId;
+    private readonly Func<TItem, TId> getId;
          
     /// <summary>
     /// Constructor with explicit Id Comparer
@@ -23,7 +23,7 @@ public class EntityDefinition<TId, TItem> : IEntityDefinition<TId, TItem>
         IEqualityComparer<TId> idComparer,
         IEqualityComparer<TItem> aliasComparer = null)
     {
-            _getId = getId;
+            this.getId = getId;
             IdEqualityComparer = idComparer;
             AliasEqualityComparer = aliasComparer ?? EqualityComparer<TItem>.Default;
         }
@@ -37,7 +37,7 @@ public class EntityDefinition<TId, TItem> : IEntityDefinition<TId, TItem>
         : this(getId, EqualityComparer<TId>.Default, aliasComparer) 
     { } 
         
-    public TId GetId(TItem value) => _getId(value);
+    public TId GetId(TItem value) => getId(value);
         
     public IEqualityComparer<TId> IdEqualityComparer { get; } 
     public IEqualityComparer<TItem> AliasEqualityComparer { get; } 

@@ -11,12 +11,12 @@ namespace TreeCollections;
 /// <typeparam name="TNode"></typeparam>
 public abstract class SerialTreeNode<TNode> where TNode : SerialTreeNode<TNode>, new()
 {
-    private readonly TNode _this;
+    private readonly TNode @this;
 
     protected SerialTreeNode(params TNode[] children)
     {
             Children = children ?? new TNode[0];
-            _this = (TNode)this;
+            @this = (TNode)this;
         }
 
     public TNode[] Children { get; set; }
@@ -28,7 +28,7 @@ public abstract class SerialTreeNode<TNode> where TNode : SerialTreeNode<TNode>,
     /// <returns></returns>
     public IEnumerable<TNode> Where(Func<TNode, bool> isMatch)
     {
-            return FindRecursive(_this, isMatch).Where(x => true);
+            return FindRecursive(@this, isMatch).Where(x => true);
         }
         
     /// <summary>
@@ -56,7 +56,7 @@ public abstract class SerialTreeNode<TNode> where TNode : SerialTreeNode<TNode>,
     /// <param name="doIt"></param>
     public void ForEach(Action<TNode, int> doIt)
     {
-            ForEach(_this, 0, doIt);
+            ForEach(@this, 0, doIt);
         }
 
     /// <summary>

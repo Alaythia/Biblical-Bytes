@@ -17,7 +17,7 @@ namespace TreeCollections.Tree.ItemTree.EntityTree.MutableEntityTree.Specializat
 public abstract class MutableEntityTreeNode<TNode, TId, TName, TItem> : MutableEntityTreeNode<TNode, TId, TItem> 
     where TNode : MutableEntityTreeNode<TNode, TId, TName, TItem>
 {
-    private readonly Func<TItem, TName> _getName;
+    private readonly Func<TItem, TName> getName;
 
     /// <summary>
     /// Root constructor
@@ -30,7 +30,7 @@ public abstract class MutableEntityTreeNode<TNode, TId, TName, TItem> : MutableE
         ErrorCheckOptions checkOptions = ErrorCheckOptions.Default)
         : base(definition, rootItem, checkOptions)
     {
-            _getName = definition.GetName;
+            getName = definition.GetName;
         }
         
     /// <summary>
@@ -40,13 +40,13 @@ public abstract class MutableEntityTreeNode<TNode, TId, TName, TItem> : MutableE
     /// <param name="parent"></param>
     protected MutableEntityTreeNode(TItem item, TNode parent) : base(item, parent)
     {
-            _getName = parent._getName;
+            getName = parent.getName;
         }
 
     /// <summary>
     /// Quick access to item name
     /// </summary>
-    public TName Name => _getName(Item);
+    public TName Name => getName(Item);
         
     /// <summary>
     /// Rename item safely

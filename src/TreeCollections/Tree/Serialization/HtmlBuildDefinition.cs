@@ -10,22 +10,22 @@ namespace TreeCollections.Tree.Serialization;
 public class HtmlBuildDefinition<TNode> where TNode : TreeNode<TNode>
 {
     // ReSharper disable once StaticMemberInGenericType
-    private static readonly IDictionary<string, string> EmptyAttributes = new Dictionary<string, string>();
+    private static readonly IDictionary<string, string> emptyAttributes = new Dictionary<string, string>();
 
     public HtmlBuildDefinition()
     {
             RootElementName = "ul";
-            GetRootAttributes = n => EmptyAttributes;
+            GetRootAttributes = n => emptyAttributes;
             GetRootPreHtml = n => string.Empty;
             GetRootPostHtml = n => string.Empty;
 
             ItemElementName = "li";
-            GetItemAttributes = n => EmptyAttributes;
+            GetItemAttributes = n => emptyAttributes;
             GetItemPreHtml = n => n.HierarchyId.ToString("/");
             GetItemPostHtml = n => string.Empty;
             
             ContainerElementName = "ul";
-            GetContainerAttributes = n => EmptyAttributes;
+            GetContainerAttributes = n => emptyAttributes;
             GetContainerPreHtml = n => string.Empty;
             GetContainerPostHtml = n => string.Empty;
         }

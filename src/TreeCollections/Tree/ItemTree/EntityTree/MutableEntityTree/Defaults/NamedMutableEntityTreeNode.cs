@@ -13,7 +13,7 @@ namespace TreeCollections.Tree.ItemTree.EntityTree.MutableEntityTree.Defaults;
 /// <typeparam name="TItem"></typeparam>
 public class NamedMutableEntityTreeNode<TId, TItem> : MutableEntityTreeNode<NamedMutableEntityTreeNode<TId, TItem>, TId, string, TItem>
 {
-    private readonly Action<TItem, string> _setItemName;
+    private readonly Action<TItem, string> setItemName;
 
     /// <summary>
     /// Root constructor
@@ -28,7 +28,7 @@ public class NamedMutableEntityTreeNode<TId, TItem> : MutableEntityTreeNode<Name
         ErrorCheckOptions checkOptions = ErrorCheckOptions.Default)
         : base(definition, rootItem, checkOptions)
     {
-            _setItemName = setItemName;
+            this.setItemName = setItemName;
         }
 
     /// <summary>
@@ -52,16 +52,16 @@ public class NamedMutableEntityTreeNode<TId, TItem> : MutableEntityTreeNode<Name
         Action<TItem, string> setItemName)
         : base(item, parent)
     {
-            _setItemName = setItemName;
+            this.setItemName = setItemName;
         }
 
     protected sealed override NamedMutableEntityTreeNode<TId, TItem> Create(TItem item, NamedMutableEntityTreeNode<TId, TItem> parent)
     {
-            return new NamedMutableEntityTreeNode<TId, TItem>(item, parent, _setItemName);
+            return new NamedMutableEntityTreeNode<TId, TItem>(item, parent, setItemName);
         }
 
     protected sealed override void SetItemName(string name)
     {
-            _setItemName(Item, name);
+            setItemName(Item, name);
         }
 }

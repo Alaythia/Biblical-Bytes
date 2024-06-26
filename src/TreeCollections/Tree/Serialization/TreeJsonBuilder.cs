@@ -10,20 +10,13 @@ namespace TreeCollections.Tree.Serialization;
 /// Builder for representing a tree as JSON
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
-public class TreeJsonBuilder<TNode> where TNode : TreeNode<TNode>
+public class TreeJsonBuilder<TNode>(
+    Func<TNode, Dictionary<string, string>> toProperties,
+    string childrenPropertyName = "Children") where TNode : TreeNode<TNode>
 {
-    private readonly Func<TNode, Dictionary<string, string>> _toProperties;
-    private readonly string _childrenPropertyName;
-
-    private Func<TNode, bool> _allowNext;
-    private int _maxRelativeDepth;
-    private StringBuilder _builder;
-        
-    public TreeJsonBuilder(Func<TNode, Dictionary<string, string>> toProperties, string childrenPropertyName = "Children")
-    {
-            _toProperties = toProperties;
-            _childrenPropertyName = childrenPropertyName;
-        }
+    private Func<TNode, bool> allowNext;
+    private int maxRelativeDepth;
+    private StringBuilder builder;
 
     public TreeJsonBuilder(string childrenPropertyName = "Children") 
         : this(n => new Dictionary<string, string> { {"HierarchyId", n.HierarchyId.ToString("/").WrapDoubleQuotes()}}, childrenPropertyName)
@@ -78,9 +71,9 @@ public class TreeJsonBuilder<TNode> where TNode : TreeNode<TNode>
     {
             if (!allowNext(root) || maxRelativeDepth < 0) return string.Empty;
 
-            _allowNext = allowNext;
-            _maxRelativeDepth = maxRelativeDepth;
-            _builder = new StringBuilder();
+            this.allowNext = allowNext;
+            this.maxRelativeDepth = maxRelativeDepth;
+            builder = new StringBuilder();
 
             if (includeRoot)
             {
@@ -91,37 +84,37 @@ public class TreeJsonBuilder<TNode> where TNode : TreeNode<TNode>
                 BuildChildren(root, 0, string.Empty);
             }
 
-            return _builder.ToString();
+            return builder.ToString();
         }
 
     private void BuildItem(TNode node, int curDepth)
     {
-            _builder.Append("{");
+            builder.Append("{");
 
-            var propertyMap = _toProperties(node);
+            var propertyMap = toProperties(node);
 
             var hasProperties = propertyMap.Count > 0;
 
             if (hasProperties)
             {
-                _builder.Append(propertyMap.Select(kvp => $"{kvp.Key.WrapDoubleQuotes()}:{kvp.Value}").ToCsv());
+                builder.Append(propertyMap.Select(kvp => $"{kvp.Key.WrapDoubleQuotes()}:{kvp.Value}").ToCsv());
             }
 
-            BuildChildren(node, curDepth, $"{(hasProperties ? "," : string.Empty)}{_childrenPropertyName.WrapDoubleQuotes()}:");
+            BuildChildren(node, curDepth, $"{(hasProperties ? "," : string.Empty)}{childrenPropertyName.WrapDoubleQuotes()}:");
 
-            _builder.Append("}");
+            builder.Append("}");
         }
 
     private void BuildChildren(TNode node, int curDepth, string prefix)
     {
-            if (curDepth++ == _maxRelativeDepth) return;
+            if (curDepth++ == maxRelativeDepth) return;
 
-            var effectiveChildren = node.Children.Where(_allowNext).ToArray();
+            var effectiveChildren = node.Children.Where(allowNext).ToArray();
 
             if (effectiveChildren.Length == 0) return;
 
-            _builder.Append(prefix);
-            _builder.Append("[");
+            builder.Append(prefix);
+            builder.Append("[");
 
             foreach (var child in effectiveChildren)
             {
@@ -129,10 +122,10 @@ public class TreeJsonBuilder<TNode> where TNode : TreeNode<TNode>
 
                 if (child.NextSibling != null)
                 {
-                    _builder.Append(",");
+                    builder.Append(",");
                 }
             }
 
-            _builder.Append("]");
+            builder.Append("]");
         }
 }

@@ -16,7 +16,7 @@ public abstract partial class TreeNode<TNode> : IEnumerable<TNode>, ITreeNode
     where TNode : TreeNode<TNode>
 {
     private protected readonly List<TNode> ChildrenList;
-    private readonly Lazy<HierarchyPosition.HierarchyPosition> _hierarchyId;
+    private readonly Lazy<HierarchyPosition.HierarchyPosition> hierarchyId;
         
     protected TreeNode(TNode parent, List<TNode> children)
     {
@@ -27,7 +27,7 @@ public abstract partial class TreeNode<TNode> : IEnumerable<TNode>, ITreeNode
 
             ChildrenList = children;
             
-            _hierarchyId = new Lazy<HierarchyPosition.HierarchyPosition>(GetHierarchyId, LazyThreadSafetyMode.PublicationOnly);
+            hierarchyId = new Lazy<HierarchyPosition.HierarchyPosition>(GetHierarchyId, LazyThreadSafetyMode.PublicationOnly);
         }
 
     public TNode Root { get; internal set; }
@@ -43,7 +43,7 @@ public abstract partial class TreeNode<TNode> : IEnumerable<TNode>, ITreeNode
     /// <summary>
     /// Hierarchical identity of this node
     /// </summary>
-    public HierarchyPosition.HierarchyPosition HierarchyId => IsReadOnly ? _hierarchyId.Value : GetHierarchyId();
+    public HierarchyPosition.HierarchyPosition HierarchyId => IsReadOnly ? hierarchyId.Value : GetHierarchyId();
 
     public abstract bool IsReadOnly { get; }
 

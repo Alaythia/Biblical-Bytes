@@ -5,22 +5,22 @@ namespace TreeCollections.Tree.ItemTree.EntityTree.EntityDefinition;
 
 internal class AliasComparer<TItem, TName> : IEqualityComparer<TItem>
 {
-    private readonly Func<TItem, TName> _getName;
-    private readonly IEqualityComparer<TName> _nameComparer;
+    private readonly Func<TItem, TName> getName;
+    private readonly IEqualityComparer<TName> nameComparer;
            
     public AliasComparer(Func<TItem, TName> getName, IEqualityComparer<TName> nameComparer)
     {
-            _getName = getName;
-            _nameComparer = nameComparer;
+            this.getName = getName;
+            this.nameComparer = nameComparer;
         } 
 
     public bool Equals(TItem x, TItem y)
     {
-            return _nameComparer.Equals(_getName(x), _getName(y));
+            return nameComparer.Equals(getName(x), getName(y));
         }
 
     public int GetHashCode(TItem obj)
     {
-            return _nameComparer.GetHashCode(_getName(obj));
+            return nameComparer.GetHashCode(getName(obj));
         }
 }

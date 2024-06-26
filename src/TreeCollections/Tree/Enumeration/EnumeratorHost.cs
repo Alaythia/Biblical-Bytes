@@ -10,16 +10,16 @@ namespace TreeCollections.Tree.Enumeration;
 public class EnumeratorHost<TNode> : IEnumerable<TNode>
     where TNode : TreeNode<TNode>
 {
-    private readonly IEnumerator<TNode> _enumerator;
+    private readonly IEnumerator<TNode> enumerator;
 
     internal EnumeratorHost(IEnumerator<TNode> enumerator)
     {
-            _enumerator = enumerator;
+            this.enumerator = enumerator;
         }
   
     public IEnumerator<TNode> GetEnumerator()
     {
-            return _enumerator;
+            return enumerator;
         }
 
     IEnumerator IEnumerable.GetEnumerator()

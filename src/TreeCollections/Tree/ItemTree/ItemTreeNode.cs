@@ -13,7 +13,7 @@ namespace TreeCollections.Tree.ItemTree;
 public abstract partial class ItemTreeNode<TNode, TItem> : TreeNode<TNode>, IItemTreeNode<TItem>
     where TNode : ItemTreeNode<TNode, TItem>
 {
-    private bool _isBuilt;
+    private bool isBuilt;
         
     protected ItemTreeNode(TItem item, TNode parent)
         : base(parent, new List<TNode>())
@@ -39,12 +39,12 @@ public abstract partial class ItemTreeNode<TNode, TItem> : TreeNode<TNode>, IIte
                 return;
             }
 
-            if (_isBuilt)
+            if (isBuilt)
             {
                 throw new InvalidOperationException("Cannot add children to a read-only tree that has been built");
             }
 
-            _isBuilt = true;
+            isBuilt = true;
             InnerBuild(childItems);
         }
 

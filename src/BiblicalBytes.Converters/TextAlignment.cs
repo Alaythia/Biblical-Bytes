@@ -1,4 +1,4 @@
-﻿namespace BiblicalBytes.Converters.RtfTree;
+﻿namespace BiblicalBytes.Converters;
 
 public enum TextAlignment
 {

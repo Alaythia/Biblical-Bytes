@@ -11,13 +11,13 @@ namespace TreeCollections.Tree.Enumeration;
 public class PreOrderEnumerator<TNode> : IEnumerator<TNode>
     where TNode : TreeNode<TNode>
 {
-    private readonly TNode _rootOfIteration;
-    private readonly int _maxLevel;
+    private readonly TNode rootOfIteration;
+    private readonly int maxLevel;
 
     internal PreOrderEnumerator(TNode rootOfIteration, int? maxRelativeDepth = null)
     {
-            _rootOfIteration = rootOfIteration;
-            _maxLevel = rootOfIteration.Level + maxRelativeDepth ?? int.MaxValue;
+            this.rootOfIteration = rootOfIteration;
+            maxLevel = rootOfIteration.Level + maxRelativeDepth ?? int.MaxValue;
             
             Current = null;
         } 
@@ -26,19 +26,19 @@ public class PreOrderEnumerator<TNode> : IEnumerator<TNode>
     {
             if (Current == null)
             {
-                Current = _rootOfIteration;
+                Current = rootOfIteration;
                 return true;
             }
 
             var firstChild = Current.Children.FirstOrDefault();
 
-            if (firstChild != null && firstChild.Level <= _maxLevel)
+            if (firstChild != null && firstChild.Level <= maxLevel)
             {
                 Current = firstChild;
                 return true;
             }
 
-            if (Current.Equals(_rootOfIteration))
+            if (Current.Equals(rootOfIteration))
             {
                 return false;
             }
@@ -50,7 +50,7 @@ public class PreOrderEnumerator<TNode> : IEnumerator<TNode>
             {
                 node = node.Parent;
 
-                if (node.Equals(_rootOfIteration))
+                if (node.Equals(rootOfIteration))
                 {
                     return false;
                 }
