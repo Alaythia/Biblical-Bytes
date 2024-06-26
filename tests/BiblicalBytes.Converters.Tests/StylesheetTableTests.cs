@@ -46,7 +46,7 @@ public class StylesheetTableTests
     public void Add_WithExistingIndex_LogsWarning()
     {
         // Arrange
-        var index = 1;
+        const int index = 1;
         var styleSheet = new RtfStyleSheet { Name = "TestStyle" };
         stylesheetTable.Add(index, styleSheet);
 
