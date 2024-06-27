@@ -97,6 +97,9 @@ public class RtfTree
 
         var nprin = root.FirstChild;
 
+        if(nprin == null)
+            return tablaFuentes;
+
         var enc = false;
         var i = 0;
         var ntf = new RtfTreeNode();       
@@ -142,6 +145,9 @@ public class RtfTree
         var root = rootNode;
 
         var nprin = root.FirstChild;
+
+        if(nprin == null)
+            return tablaColores;
 
         var enc = false;
         var i = 0;

@@ -77,8 +77,8 @@ public class RtfLex
     /// <param name="token">The token to be updated with keyword details.</param>
     private void ParseKeyword(RtfToken token)
     {
-        keysb.Length = 0;
-        parsb.Length = 0;
+        keysb.Clear();
+        parsb.Clear();
 
         int parametroInt;
         var negativo = false;
@@ -164,7 +164,7 @@ public class RtfLex
     /// <param name="token">The token to be updated with text details.</param>
     private void ParseText(RtfToken token)
     {
-        keysb.Length = 0;
+        keysb.Clear();
 
         while (c != '\\' && c != '}' && c != '{' && c != Eof)
         {
