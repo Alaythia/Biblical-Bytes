@@ -1,8 +1,14 @@
 ﻿namespace BiblicalBytes.Converters.RtfToHtml;
 
+/// <summary>
+/// Provides a collection of allowed HTML tags and their corresponding RTF representations for RTF to HTML conversion.
+/// </summary>
 public static class AllowedHtmlTags
 {
-    public static Tag[] HtmlTags =
+    /// <summary>
+    /// An array of <see cref="Tag"/> objects representing the allowed HTML tags and their RTF representations.
+    /// </summary>
+    public static readonly Tag[] HtmlTags =
     [
         new Tag()
         {
@@ -308,11 +314,23 @@ public static class AllowedHtmlTags
             ClosingRtf= ""
         }
     ];
-    public static bool IsKnowedTag(string tag)
+
+    /// <summary>
+    /// Checks if a given tag is known (allowed) or not.
+    /// </summary>
+    /// <param name="tag">The tag to check.</param>
+    /// <returns><c>true</c> if the tag is known; otherwise, <c>false</c>.</returns>
+    public static bool IsKnownTag(string tag)
     {
-        var isKnowedTag = GetAllowedTag(tag);
-        return isKnowedTag != null;
+        var isKnownTag = GetAllowedTag(tag);
+        return isKnownTag != null;
     }
+
+    /// <summary>
+    /// Retrieves the allowed tag object for a given tag name.
+    /// </summary>
+    /// <param name="tag">The name of the tag.</param>
+    /// <returns>The <see cref="Tag"/> object if found; otherwise, <c>null</c>.</returns>
     public static Tag GetAllowedTag(string tag)
     {
         tag = tag.ToLower();
@@ -323,6 +341,12 @@ public static class AllowedHtmlTags
         }
         return null;
     }
+
+    /// <summary>
+    /// Gets the RTF representation for a given HTML tag name.
+    /// </summary>
+    /// <param name="tagName">The name of the HTML tag.</param>
+    /// <returns>The RTF representation string if the tag is known; otherwise, <c>null</c>.</returns>
     public static string GetRtfReferenceTag(string tagName)
     {
         Tag allowedTag;

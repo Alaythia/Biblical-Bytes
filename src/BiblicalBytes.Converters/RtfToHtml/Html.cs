@@ -15,9 +15,9 @@ public class Html
     private StringBuilder builder;
     private Format htmlFormat;
     private List<Format> formatList;
-    private int spanCount = 0;
-    private int divCount = 0;
-    private bool hasHref = false;
+    private int spanCount;
+    private int divCount;
+    private bool hasHref;
     private RtfColorTable colorTable;
     private RtfFontTable fontTable;
 
@@ -27,6 +27,11 @@ public class Html
         IgnoreFontNames = false;
         DefaultFontSize = 10;
         DefaultFontName = "Times New Roman";
+        colorTable = new RtfColorTable();
+        fontTable = new RtfFontTable();
+        formatList = new List<Format>();
+        builder = new StringBuilder();
+        htmlFormat = new Format();
     }
 
     public bool AutoParagraph { get; set; }
@@ -574,7 +579,4 @@ public class Html
     {
         return a.R == b.R && a.G == b.G && a.B == b.B;
     }
-
-
-
 }

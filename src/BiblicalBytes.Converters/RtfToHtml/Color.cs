@@ -2,15 +2,15 @@ using System.Text.RegularExpressions;
 
 namespace BiblicalBytes.Converters.RtfToHtml;
 
-internal static class ColorTable
+/// <summary>
+/// Provides functionality to manage and convert colors for RTF to HTML conversion.
+/// </summary>
+public static class Color
 {
-    public static int Amount = -1;
-    public static List<string[]> Colors = [];
-}
-
-internal static class Color
-{
-    private static readonly IDictionary<string, string> baseColors = new Dictionary<string, string>()
+    /// <summary>
+    /// A dictionary mapping color names to their RGB string representations.
+    /// </summary>
+    private static readonly IDictionary<string, string> BaseColors = new Dictionary<string, string>()
     {
         {"black","rgb(0,0,0)"},
         {"white","rgb(255,255,255)"},
@@ -32,14 +32,24 @@ internal static class Color
 
     private const string RtfColorTableOpening = "{\\colortbl";
     private const string RtfColorTableClosing = "}";
+
+    /// <summary>
+    /// Generates the RTF color table from the base colors.
+    /// </summary>
+    /// <returns>A string representing the RTF color table.</returns>
     public static string GetRtfColorTable()
     {
         return RtfColorTableOpening + GetAllColorsDeclaredInColorTable() + RtfColorTableClosing;
     }
 
+    /// <summary>
+    /// Converts a color name or RGB/Hex value to its RTF color reference.
+    /// </summary>
+    /// <param name="color">The color name, RGB, or Hex value.</param>
+    /// <returns>The RTF color reference string.</returns>
     public static string GetRtfReferenceColor(string color)
     {
-        foreach (KeyValuePair<string, string> entry in baseColors)
+        foreach (KeyValuePair<string, string> entry in BaseColors)
         {
             if (entry.Key == color.ToLower())
                 color = entry.Value;
@@ -52,9 +62,15 @@ internal static class Color
 
         return null;
     }
+
+    /// <summary>
+    /// Converts a color name or RGB/Hex value to its RTF background color reference.
+    /// </summary>
+    /// <param name="color">The color name, RGB, or Hex value.</param>
+    /// <returns>The RTF background color reference string.</returns>
     public static string GetRtfReferenceBackgroundColor(string color)
     {
-        foreach (KeyValuePair<string, string> entry in baseColors)
+        foreach (KeyValuePair<string, string> entry in BaseColors)
         {
             if (entry.Key == color.ToLower())
                 color = entry.Value;
@@ -68,12 +84,22 @@ internal static class Color
         return null;
     }
 
+    /// <summary>
+    /// Extracts RGB values from a color string.
+    /// </summary>
+    /// <param name="color">The color string in RGB format.</param>
+    /// <returns>An array of double values representing the RGB components.</returns>
     public static double[] GetRgbValues(string color)
     {
         color = Regex.Replace(color, "[\\])}[{(rgb:; ]", "");
         return Array.ConvertAll(color.Split(','), Double.Parse);
     }
 
+    /// <summary>
+    /// Converts a Hex color value to its RGB components.
+    /// </summary>
+    /// <param name="hexColor">The Hex color value.</param>
+    /// <returns>An array of double values representing the RGB components.</returns>
     public static double[] ConvertColorInHexToRgb(string hexColor)
     {
         Console.WriteLine("-----");
@@ -95,6 +121,12 @@ internal static class Color
         return rgb;
     }
 
+    /// <summary>
+    /// Adds a color to the color table and returns its RTF color reference.
+    /// </summary>
+    /// <param name="rgb">The RGB components of the color.</param>
+    /// <returns>The RTF color reference string.</returns>
+
     public static string GetColorInColorTable(double[] rgb)
     {
         if (VerifyIfColorExistsInColorTable(rgb, "fore"))
@@ -105,6 +137,12 @@ internal static class Color
             return GetRtfReferenceColorInColorTable(rgb, "fore");
         }
     }
+
+    /// <summary>
+    /// Adds a color to the color table and returns its RTF background color reference.
+    /// </summary>
+    /// <param name="rgb">The RGB components of the color.</param>
+    /// <returns>The RTF background color reference string.</returns>
     public static string GetBackColorInColorTable(double[] rgb)
     {
         if (VerifyIfColorExistsInColorTable(rgb, "back"))
@@ -116,6 +154,12 @@ internal static class Color
         }
     }
 
+    /// <summary>
+    /// Verifies if a color exists in the color table.
+    /// </summary>
+    /// <param name="rgb">The RGB components of the color.</param>
+    /// <param name="type">The type of color reference ("fore" for foreground, "back" for background).</param>
+    /// <returns>true if the color exists; otherwise, false.</returns>
     public static bool VerifyIfColorExistsInColorTable(double[] rgb, string type)
     {
         var hasThisColor = false; var colorsPosition = 1;
@@ -136,6 +180,11 @@ internal static class Color
         return hasThisColor;
     }
 
+    /// <summary>
+    /// Adds a color to the color table.
+    /// </summary>
+    /// <param name="rgb">The RGB components of the color.</param>
+    /// <param name="type">The type of color reference ("fore" for foreground, "back" for background).</param>
     public static void AddColorInColorTable(double[] rgb, string type)
     {
         var rtfReferenceColor = "";
@@ -146,6 +195,12 @@ internal static class Color
         ColorTable.Colors.Add([rgb[0].ToString(), rgb[1].ToString(), rgb[2].ToString(), rtfReferenceColor]);
     }
 
+    /// <summary>
+    /// Retrieves the RTF color reference for a color in the color table.
+    /// </summary>
+    /// <param name="rgb">The RGB components of the color.</param>
+    /// <param name="type">The type of color reference ("fore" for foreground, "back" for background).</param>
+    /// <returns>The RTF color reference string.</returns>
     public static string GetRtfReferenceColorInColorTable(double[] rgb, string type)
     {
         var rtfReferenceColor = "";
@@ -172,6 +227,10 @@ internal static class Color
         return rtfReferenceColor;
     }
 
+    /// <summary>
+    /// Compiles all colors declared in the color table into a single string.
+    /// </summary>
+    /// <returns>A string representing all colors in the RTF color table format.</returns>
     public static string GetAllColorsDeclaredInColorTable()
     {
         var colorTableContent = "";

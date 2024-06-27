@@ -1,28 +1,44 @@
 ﻿namespace BiblicalBytes.Converters.RtfToHtml;
 
-internal static class HtmlEntities
+/// <summary>
+/// Provides methods for encoding and decoding HTML entities.
+/// </summary>
+public static class HtmlEntities
 {
-    private static readonly Dictionary<string, string> reemplazos;
+    /// <summary>
+    /// A dictionary mapping characters to their HTML entity equivalents.
+    /// </summary>
+    private static readonly Dictionary<string, string> Replacements;
 
-    public static string Encode(string texto)
+    /// <summary>
+    /// Encodes special characters in the input string into their HTML entity equivalents.
+    /// </summary>
+    /// <param name="text">The input string containing characters to encode.</param>
+    /// <returns>A string with special characters encoded as HTML entities.</returns>
+    public static string Encode(string text)
     {
-        var res = texto;
+        var res = text;
 
-        foreach (KeyValuePair<string, string> reemplazo in reemplazos)
+        foreach (KeyValuePair<string, string> replacement in Replacements)
         {
-            res = res.Replace(reemplazo.Key, reemplazo.Value);
+            res = res.Replace(replacement.Key, replacement.Value);
         }
 
         return res;
     }
 
-    public static string Decode(string texto)
+    /// <summary>
+    /// Decodes HTML entities in the input string back to their character equivalents.
+    /// </summary>
+    /// <param name="text">The input string containing HTML entities to decode.</param>
+    /// <returns>A string with HTML entities decoded back to characters.</returns>
+    public static string Decode(string text)
     {
-        var res = texto;
+        var res = text;
 
-        foreach (KeyValuePair<string, string> reemplazo in reemplazos)
+        foreach (KeyValuePair<string, string> replacement in Replacements)
         {
-            res = res.Replace(reemplazo.Value, reemplazo.Key);
+            res = res.Replace(replacement.Value, replacement.Key);
         }
 
         return res;
@@ -30,250 +46,251 @@ internal static class HtmlEntities
 
     static HtmlEntities()
     {
-        reemplazos = new Dictionary<string, string>();
-
-        reemplazos.Add("¡", "&iexcl;");
-        reemplazos.Add("¢", "&cent;");
-        reemplazos.Add("£", "&pound;");
-        reemplazos.Add("¤", "&curren;");
-        reemplazos.Add("¥", "&yen;");
-        reemplazos.Add("¦", "&brvbar;");
-        reemplazos.Add("§", "&sect;");
-        reemplazos.Add("¨", "&uml;");
-        reemplazos.Add("©", "&copy;");
-        reemplazos.Add("ª", "&ordf;");
-        reemplazos.Add("«", "&laquo;");
-        reemplazos.Add("¬", "&not;");
-        reemplazos.Add("­", "&shy;");
-        reemplazos.Add("®", "&reg;");
-        reemplazos.Add("¯", "&macr;");
-        reemplazos.Add("°", "&deg;");
-        reemplazos.Add("±", "&plusmn;");
-        reemplazos.Add("²", "&sup2;");
-        reemplazos.Add("³", "&sup3;");
-        reemplazos.Add("´", "&acute;");
-        reemplazos.Add("µ", "&micro;");
-        reemplazos.Add("¶", "&para;");
-        reemplazos.Add("·", "&middot;");
-        reemplazos.Add("¸", "&cedil;");
-        reemplazos.Add("¹", "&sup1;");
-        reemplazos.Add("º", "&ordm;");
-        reemplazos.Add("»", "&raquo;");
-        reemplazos.Add("¼", "&frac14;");
-        reemplazos.Add("½", "&frac12;");
-        reemplazos.Add("¾", "&frac34;");
-        reemplazos.Add("¿", "&iquest;");
-        reemplazos.Add("À", "&Agrave;");
-        reemplazos.Add("Á", "&Aacute;");
-        reemplazos.Add("Â", "&Acirc;");
-        reemplazos.Add("Ã", "&Atilde;");
-        reemplazos.Add("Ä", "&Auml;");
-        reemplazos.Add("Å", "&Aring;");
-        reemplazos.Add("Æ", "&AElig;");
-        reemplazos.Add("Ç", "&Ccedil;");
-        reemplazos.Add("È", "&Egrave;");
-        reemplazos.Add("É", "&Eacute;");
-        reemplazos.Add("Ê", "&Ecirc;");
-        reemplazos.Add("Ë", "&Euml;");
-        reemplazos.Add("Ì", "&Igrave;");
-        reemplazos.Add("Í", "&Iacute;");
-        reemplazos.Add("Î", "&Icirc;");
-        reemplazos.Add("Ï", "&Iuml;");
-        reemplazos.Add("Ð", "&ETH;");
-        reemplazos.Add("Ñ", "&Ntilde;");
-        reemplazos.Add("Ò", "&Ograve;");
-        reemplazos.Add("Ó", "&Oacute;");
-        reemplazos.Add("Ô", "&Ocirc;");
-        reemplazos.Add("Õ", "&Otilde;");
-        reemplazos.Add("Ö", "&Ouml;");
-        reemplazos.Add("×", "&times;");
-        reemplazos.Add("Ø", "&Oslash;");
-        reemplazos.Add("Ù", "&Ugrave;");
-        reemplazos.Add("Ú", "&Uacute;");
-        reemplazos.Add("Û", "&Ucirc;");
-        reemplazos.Add("Ü", "&Uuml;");
-        reemplazos.Add("Ý", "&Yacute;");
-        reemplazos.Add("Þ", "&THORN;");
-        reemplazos.Add("ß", "&szlig;");
-        reemplazos.Add("à", "&agrave;");
-        reemplazos.Add("á", "&aacute;");
-        reemplazos.Add("â", "&acirc;");
-        reemplazos.Add("ã", "&atilde;");
-        reemplazos.Add("ä", "&auml;");
-        reemplazos.Add("å", "&aring;");
-        reemplazos.Add("æ", "&aelig;");
-        reemplazos.Add("ç", "&ccedil;");
-        reemplazos.Add("è", "&egrave;");
-        reemplazos.Add("é", "&eacute;");
-        reemplazos.Add("ê", "&ecirc;");
-        reemplazos.Add("ë", "&euml;");
-        reemplazos.Add("ì", "&igrave;");
-        reemplazos.Add("í", "&iacute;");
-        reemplazos.Add("î", "&icirc;");
-        reemplazos.Add("ï", "&iuml;");
-        reemplazos.Add("ð", "&eth;");
-        reemplazos.Add("ñ", "&ntilde;");
-        reemplazos.Add("ò", "&ograve;");
-        reemplazos.Add("ó", "&oacute;");
-        reemplazos.Add("ô", "&ocirc;");
-        reemplazos.Add("õ", "&otilde;");
-        reemplazos.Add("ö", "&ouml;");
-        reemplazos.Add("÷", "&divide;");
-        reemplazos.Add("ø", "&oslash;");
-        reemplazos.Add("ù", "&ugrave;");
-        reemplazos.Add("ú", "&uacute;");
-        reemplazos.Add("û", "&ucirc;");
-        reemplazos.Add("ü", "&uuml;");
-        reemplazos.Add("ý", "&yacute;");
-        reemplazos.Add("þ", "&thorn;");
-        reemplazos.Add("ÿ", "&yuml;");
-        reemplazos.Add("ƒ", "&fnof;");
-        reemplazos.Add("Α", "&Alpha;");
-        reemplazos.Add("Β", "&Beta;");
-        reemplazos.Add("Γ", "&Gamma;");
-        reemplazos.Add("Δ", "&Delta;");
-        reemplazos.Add("Ε", "&Epsilon;");
-        reemplazos.Add("Ζ", "&Zeta;");
-        reemplazos.Add("Η", "&Eta;");
-        reemplazos.Add("Θ", "&Theta;");
-        reemplazos.Add("Ι", "&Iota;");
-        reemplazos.Add("Κ", "&Kappa;");
-        reemplazos.Add("Λ", "&Lambda;");
-        reemplazos.Add("Μ", "&Mu;");
-        reemplazos.Add("Ν", "&Nu;");
-        reemplazos.Add("Ξ", "&Xi;");
-        reemplazos.Add("Ο", "&Omicron;");
-        reemplazos.Add("Π", "&Pi;");
-        reemplazos.Add("Ρ", "&Rho;");
-        reemplazos.Add("Σ", "&Sigma;");
-        reemplazos.Add("Τ", "&Tau;");
-        reemplazos.Add("Υ", "&Upsilon;");
-        reemplazos.Add("Φ", "&Phi;");
-        reemplazos.Add("Χ", "&Chi;");
-        reemplazos.Add("Ψ", "&Psi;");
-        reemplazos.Add("Ω", "&Omega;");
-        reemplazos.Add("α", "&alpha;");
-        reemplazos.Add("β", "&beta;");
-        reemplazos.Add("γ", "&gamma;");
-        reemplazos.Add("δ", "&delta;");
-        reemplazos.Add("ε", "&epsilon;");
-        reemplazos.Add("ζ", "&zeta;");
-        reemplazos.Add("η", "&eta;");
-        reemplazos.Add("θ", "&theta;");
-        reemplazos.Add("ι", "&iota;");
-        reemplazos.Add("κ", "&kappa;");
-        reemplazos.Add("λ", "&lambda;");
-        reemplazos.Add("μ", "&mu;");
-        reemplazos.Add("ν", "&nu;");
-        reemplazos.Add("ξ", "&xi;");
-        reemplazos.Add("ο", "&omicron;");
-        reemplazos.Add("π", "&pi;");
-        reemplazos.Add("ρ", "&rho;");
-        reemplazos.Add("ς", "&sigmaf;");
-        reemplazos.Add("σ", "&sigma;");
-        reemplazos.Add("τ", "&tau;");
-        reemplazos.Add("υ", "&upsilon;");
-        reemplazos.Add("φ", "&phi;");
-        reemplazos.Add("χ", "&chi;");
-        reemplazos.Add("ψ", "&psi;");
-        reemplazos.Add("ω", "&omega;");
-        reemplazos.Add("ϑ", "&thetasym;");
-        reemplazos.Add("ϒ", "&upsih;");
-        reemplazos.Add("ϖ", "&piv;");
-        reemplazos.Add("•", "&bull;");
-        reemplazos.Add("…", "&hellip;");
-        reemplazos.Add("′", "&prime;");
-        reemplazos.Add("″", "&Prime;");
-        reemplazos.Add("‾", "&oline;");
-        reemplazos.Add("⁄", "&frasl;");
-        reemplazos.Add("℘", "&weierp;");
-        reemplazos.Add("ℑ", "&image;");
-        reemplazos.Add("ℜ", "&real;");
-        reemplazos.Add("™", "&trade;");
-        reemplazos.Add("ℵ", "&alefsym;");
-        reemplazos.Add("←", "&larr;");
-        reemplazos.Add("↑", "&uarr;");
-        reemplazos.Add("→", "&rarr;");
-        reemplazos.Add("↓", "&darr;");
-        reemplazos.Add("↔", "&harr;");
-        reemplazos.Add("↵", "&crarr;");
-        reemplazos.Add("⇐", "&lArr;");
-        reemplazos.Add("⇑", "&uArr;");
-        reemplazos.Add("⇒", "&rArr;");
-        reemplazos.Add("⇓", "&dArr;");
-        reemplazos.Add("⇔", "&hArr;");
-        reemplazos.Add("∀", "&forall;");
-        reemplazos.Add("∂", "&part;");
-        reemplazos.Add("∃", "&exist;");
-        reemplazos.Add("∅", "&empty;");
-        reemplazos.Add("∇", "&nabla;");
-        reemplazos.Add("∈", "&isin;");
-        reemplazos.Add("∉", "&notin;");
-        reemplazos.Add("∋", "&ni;");
-        reemplazos.Add("∏", "&prod;");
-        reemplazos.Add("∑", "&sum;");
-        reemplazos.Add("−", "&minus;");
-        reemplazos.Add("∗", "&lowast;");
-        reemplazos.Add("√", "&radic;");
-        reemplazos.Add("∝", "&prop;");
-        reemplazos.Add("∞", "&infin;");
-        reemplazos.Add("∠", "&ang;");
-        reemplazos.Add("∧", "&and;");
-        reemplazos.Add("∨", "&or;");
-        reemplazos.Add("∩", "&cap;");
-        reemplazos.Add("∪", "&cup;");
-        reemplazos.Add("∫", "&int;");
-        reemplazos.Add("∴", "&there4;");
-        reemplazos.Add("∼", "&sim;");
-        reemplazos.Add("≅", "&cong;");
-        reemplazos.Add("≈", "&asymp;");
-        reemplazos.Add("≠", "&ne;");
-        reemplazos.Add("≡", "&equiv;");
-        reemplazos.Add("≤", "&le;");
-        reemplazos.Add("≥", "&ge;");
-        reemplazos.Add("⊂", "&sub;");
-        reemplazos.Add("⊃", "&sup;");
-        reemplazos.Add("⊄", "&nsub;");
-        reemplazos.Add("⊆", "&sube;");
-        reemplazos.Add("⊇", "&supe;");
-        reemplazos.Add("⊕", "&oplus;");
-        reemplazos.Add("⊗", "&otimes;");
-        reemplazos.Add("⊥", "&perp;");
-        reemplazos.Add("⋅", "&sdot;");
-        reemplazos.Add("⌈", "&lceil;");
-        reemplazos.Add("⌉", "&rceil;");
-        reemplazos.Add("⌊", "&lfloor;");
-        reemplazos.Add("⌋", "&rfloor;");
-        reemplazos.Add("〈", "&lang;");
-        reemplazos.Add("〉", "&rang;");
-        reemplazos.Add("♠", "&spades;");
-        reemplazos.Add("♣", "&clubs;");
-        reemplazos.Add("♥", "&hearts;");
-        reemplazos.Add("♦", "&diams;");
-        reemplazos.Add("Œ", "&OElig;");
-        reemplazos.Add("œ", "&oelig;");
-        reemplazos.Add("Š", "&Scaron;");
-        reemplazos.Add("š", "&scaron;");
-        reemplazos.Add("Ÿ", "&Yuml;");
-        reemplazos.Add("ˆ", "&circ;");
-        reemplazos.Add("˜", "&tilde;");
-        reemplazos.Add("‌", "&zwnj;");
-        reemplazos.Add("‍", "&zwj;");
-        reemplazos.Add("‎", "&lrm;");
-        reemplazos.Add("‏", "&rlm;");
-        reemplazos.Add("–", "&ndash;");
-        reemplazos.Add("—", "&mdash;");
-        reemplazos.Add("‘", "&lsquo;");
-        reemplazos.Add("’", "&rsquo;");
-        reemplazos.Add("‚", "&sbquo;");
-        reemplazos.Add("“", "&ldquo;");
-        reemplazos.Add("”", "&rdquo;");
-        reemplazos.Add("„", "&bdquo;");
-        reemplazos.Add("†", "&dagger;");
-        reemplazos.Add("‡", "&Dagger;");
-        reemplazos.Add("‰", "&permil;");
-        reemplazos.Add("‹", "&lsaquo;");
-        reemplazos.Add("›", "&rsaquo;");
-        reemplazos.Add("€", "&euro;");
+        Replacements = new Dictionary<string, string>
+        {
+            { "¡", "&iexcl;" },
+            { "¢", "&cent;" },
+            { "£", "&pound;" },
+            { "¤", "&curren;" },
+            { "¥", "&yen;" },
+            { "¦", "&brvbar;" },
+            { "§", "&sect;" },
+            { "¨", "&uml;" },
+            { "©", "&copy;" },
+            { "ª", "&ordf;" },
+            { "«", "&laquo;" },
+            { "¬", "&not;" },
+            { "­", "&shy;" },
+            { "®", "&reg;" },
+            { "¯", "&macr;" },
+            { "°", "&deg;" },
+            { "±", "&plusmn;" },
+            { "²", "&sup2;" },
+            { "³", "&sup3;" },
+            { "´", "&acute;" },
+            { "µ", "&micro;" },
+            { "¶", "&para;" },
+            { "·", "&middot;" },
+            { "¸", "&cedil;" },
+            { "¹", "&sup1;" },
+            { "º", "&ordm;" },
+            { "»", "&raquo;" },
+            { "¼", "&frac14;" },
+            { "½", "&frac12;" },
+            { "¾", "&frac34;" },
+            { "¿", "&iquest;" },
+            { "À", "&Agrave;" },
+            { "Á", "&Aacute;" },
+            { "Â", "&Acirc;" },
+            { "Ã", "&Atilde;" },
+            { "Ä", "&Auml;" },
+            { "Å", "&Aring;" },
+            { "Æ", "&AElig;" },
+            { "Ç", "&Ccedil;" },
+            { "È", "&Egrave;" },
+            { "É", "&Eacute;" },
+            { "Ê", "&Ecirc;" },
+            { "Ë", "&Euml;" },
+            { "Ì", "&Igrave;" },
+            { "Í", "&Iacute;" },
+            { "Î", "&Icirc;" },
+            { "Ï", "&Iuml;" },
+            { "Ð", "&ETH;" },
+            { "Ñ", "&Ntilde;" },
+            { "Ò", "&Ograve;" },
+            { "Ó", "&Oacute;" },
+            { "Ô", "&Ocirc;" },
+            { "Õ", "&Otilde;" },
+            { "Ö", "&Ouml;" },
+            { "×", "&times;" },
+            { "Ø", "&Oslash;" },
+            { "Ù", "&Ugrave;" },
+            { "Ú", "&Uacute;" },
+            { "Û", "&Ucirc;" },
+            { "Ü", "&Uuml;" },
+            { "Ý", "&Yacute;" },
+            { "Þ", "&THORN;" },
+            { "ß", "&szlig;" },
+            { "à", "&agrave;" },
+            { "á", "&aacute;" },
+            { "â", "&acirc;" },
+            { "ã", "&atilde;" },
+            { "ä", "&auml;" },
+            { "å", "&aring;" },
+            { "æ", "&aelig;" },
+            { "ç", "&ccedil;" },
+            { "è", "&egrave;" },
+            { "é", "&eacute;" },
+            { "ê", "&ecirc;" },
+            { "ë", "&euml;" },
+            { "ì", "&igrave;" },
+            { "í", "&iacute;" },
+            { "î", "&icirc;" },
+            { "ï", "&iuml;" },
+            { "ð", "&eth;" },
+            { "ñ", "&ntilde;" },
+            { "ò", "&ograve;" },
+            { "ó", "&oacute;" },
+            { "ô", "&ocirc;" },
+            { "õ", "&otilde;" },
+            { "ö", "&ouml;" },
+            { "÷", "&divide;" },
+            { "ø", "&oslash;" },
+            { "ù", "&ugrave;" },
+            { "ú", "&uacute;" },
+            { "û", "&ucirc;" },
+            { "ü", "&uuml;" },
+            { "ý", "&yacute;" },
+            { "þ", "&thorn;" },
+            { "ÿ", "&yuml;" },
+            { "ƒ", "&fnof;" },
+            { "Α", "&Alpha;" },
+            { "Β", "&Beta;" },
+            { "Γ", "&Gamma;" },
+            { "Δ", "&Delta;" },
+            { "Ε", "&Epsilon;" },
+            { "Ζ", "&Zeta;" },
+            { "Η", "&Eta;" },
+            { "Θ", "&Theta;" },
+            { "Ι", "&Iota;" },
+            { "Κ", "&Kappa;" },
+            { "Λ", "&Lambda;" },
+            { "Μ", "&Mu;" },
+            { "Ν", "&Nu;" },
+            { "Ξ", "&Xi;" },
+            { "Ο", "&Omicron;" },
+            { "Π", "&Pi;" },
+            { "Ρ", "&Rho;" },
+            { "Σ", "&Sigma;" },
+            { "Τ", "&Tau;" },
+            { "Υ", "&Upsilon;" },
+            { "Φ", "&Phi;" },
+            { "Χ", "&Chi;" },
+            { "Ψ", "&Psi;" },
+            { "Ω", "&Omega;" },
+            { "α", "&alpha;" },
+            { "β", "&beta;" },
+            { "γ", "&gamma;" },
+            { "δ", "&delta;" },
+            { "ε", "&epsilon;" },
+            { "ζ", "&zeta;" },
+            { "η", "&eta;" },
+            { "θ", "&theta;" },
+            { "ι", "&iota;" },
+            { "κ", "&kappa;" },
+            { "λ", "&lambda;" },
+            { "μ", "&mu;" },
+            { "ν", "&nu;" },
+            { "ξ", "&xi;" },
+            { "ο", "&omicron;" },
+            { "π", "&pi;" },
+            { "ρ", "&rho;" },
+            { "ς", "&sigmaf;" },
+            { "σ", "&sigma;" },
+            { "τ", "&tau;" },
+            { "υ", "&upsilon;" },
+            { "φ", "&phi;" },
+            { "χ", "&chi;" },
+            { "ψ", "&psi;" },
+            { "ω", "&omega;" },
+            { "ϑ", "&thetasym;" },
+            { "ϒ", "&upsih;" },
+            { "ϖ", "&piv;" },
+            { "•", "&bull;" },
+            { "…", "&hellip;" },
+            { "′", "&prime;" },
+            { "″", "&Prime;" },
+            { "‾", "&oline;" },
+            { "⁄", "&frasl;" },
+            { "℘", "&weierp;" },
+            { "ℑ", "&image;" },
+            { "ℜ", "&real;" },
+            { "™", "&trade;" },
+            { "ℵ", "&alefsym;" },
+            { "←", "&larr;" },
+            { "↑", "&uarr;" },
+            { "→", "&rarr;" },
+            { "↓", "&darr;" },
+            { "↔", "&harr;" },
+            { "↵", "&crarr;" },
+            { "⇐", "&lArr;" },
+            { "⇑", "&uArr;" },
+            { "⇒", "&rArr;" },
+            { "⇓", "&dArr;" },
+            { "⇔", "&hArr;" },
+            { "∀", "&forall;" },
+            { "∂", "&part;" },
+            { "∃", "&exist;" },
+            { "∅", "&empty;" },
+            { "∇", "&nabla;" },
+            { "∈", "&isin;" },
+            { "∉", "&notin;" },
+            { "∋", "&ni;" },
+            { "∏", "&prod;" },
+            { "∑", "&sum;" },
+            { "−", "&minus;" },
+            { "∗", "&lowast;" },
+            { "√", "&radic;" },
+            { "∝", "&prop;" },
+            { "∞", "&infin;" },
+            { "∠", "&ang;" },
+            { "∧", "&and;" },
+            { "∨", "&or;" },
+            { "∩", "&cap;" },
+            { "∪", "&cup;" },
+            { "∫", "&int;" },
+            { "∴", "&there4;" },
+            { "∼", "&sim;" },
+            { "≅", "&cong;" },
+            { "≈", "&asymp;" },
+            { "≠", "&ne;" },
+            { "≡", "&equiv;" },
+            { "≤", "&le;" },
+            { "≥", "&ge;" },
+            { "⊂", "&sub;" },
+            { "⊃", "&sup;" },
+            { "⊄", "&nsub;" },
+            { "⊆", "&sube;" },
+            { "⊇", "&supe;" },
+            { "⊕", "&oplus;" },
+            { "⊗", "&otimes;" },
+            { "⊥", "&perp;" },
+            { "⋅", "&sdot;" },
+            { "⌈", "&lceil;" },
+            { "⌉", "&rceil;" },
+            { "⌊", "&lfloor;" },
+            { "⌋", "&rfloor;" },
+            { "〈", "&lang;" },
+            { "〉", "&rang;" },
+            { "♠", "&spades;" },
+            { "♣", "&clubs;" },
+            { "♥", "&hearts;" },
+            { "♦", "&diams;" },
+            { "Œ", "&OElig;" },
+            { "œ", "&oelig;" },
+            { "Š", "&Scaron;" },
+            { "š", "&scaron;" },
+            { "Ÿ", "&Yuml;" },
+            { "ˆ", "&circ;" },
+            { "˜", "&tilde;" },
+            { "‌", "&zwnj;" },
+            { "‍", "&zwj;" },
+            { "‎", "&lrm;" },
+            { "‏", "&rlm;" },
+            { "–", "&ndash;" },
+            { "—", "&mdash;" },
+            { "‘", "&lsquo;" },
+            { "’", "&rsquo;" },
+            { "‚", "&sbquo;" },
+            { "“", "&ldquo;" },
+            { "”", "&rdquo;" },
+            { "„", "&bdquo;" },
+            { "†", "&dagger;" },
+            { "‡", "&Dagger;" },
+            { "‰", "&permil;" },
+            { "‹", "&lsaquo;" },
+            { "›", "&rsaquo;" },
+            { "€", "&euro;" }
+        };
     }
 }

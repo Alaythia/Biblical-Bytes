@@ -1,10 +1,9 @@
 ﻿using System.Text.RegularExpressions;
 using HtmlAgilityPack;
-using RtfToHtml;
 
 namespace BiblicalBytes.Converters.RtfToHtml;
 
-internal class Rtf
+public class Rtf
 {
     private Table table;
 
@@ -14,6 +13,7 @@ internal class Rtf
     private HtmlNode prevTag;
 
     private List<Reference> rtfContentReferences = new List<Reference>();
+
     public Rtf()
     {
         this.rtfHeaderOpening = "{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2";
@@ -82,8 +82,8 @@ internal class Rtf
                             var text = node.InnerText;
                             text = MyString.RemoveCharacterOfEscapeInAllString(text, "\n\t");
 
-                            if (text != null && !MyString.hasOnlyWhiteSpace(text))
-                                this.rtfContentReferences.Add(new Reference() { content = this.AddSpaceAroundString(text)+"{\\par}", tag = false });
+                            if (text != null && !MyString.HasOnlyWhiteSpace(text))
+                                this.rtfContentReferences.Add(new Reference() { Content = this.AddSpaceAroundString(text)+"{\\par}", Tag = false });
 
                             //this.addContentOfTagInRtfCode(text.Trim() + "{\\par}");
 
@@ -182,17 +182,17 @@ internal class Rtf
            
         contentOfTag = MyString.RemoveCharacterOfEscapeInAllString(contentOfTag, "\n\t");
 
-        if (contentOfTag != null && !MyString.hasOnlyWhiteSpace(contentOfTag))
-            this.rtfContentReferences.Add(new Reference() { content = this.AddSpaceAroundString(contentOfTag), tag = false });
+        if (contentOfTag != null && !MyString.HasOnlyWhiteSpace(contentOfTag))
+            this.rtfContentReferences.Add(new Reference() { Content = this.AddSpaceAroundString(contentOfTag), Tag = false });
             
     }
 
     private string AddSpaceAroundString(string contentOfTag)
     {
         Console.WriteLine(contentOfTag + "wrapped");
-        if (this.rtfContentReferences.Last().content.Contains('\\'))
+        if (this.rtfContentReferences.Last().Content.Contains('\\'))
         {
-            Console.WriteLine(this.rtfContentReferences.Last().content);
+            Console.WriteLine(this.rtfContentReferences.Last().Content);
             return $" {contentOfTag}";
         }
         else
@@ -208,7 +208,7 @@ internal class Rtf
     {
         if (referenceTag != null)
         {
-            this.rtfContentReferences.Add(new Reference { content = referenceTag, tag = true });
+            this.rtfContentReferences.Add(new Reference { Content = referenceTag, Tag = true });
         }
     }
 
@@ -235,7 +235,7 @@ internal class Rtf
         foreach (var value in this.rtfContentReferences)
         {
 
-            rtfReference += value.content;
+            rtfReference += value.Content;
         }
         return rtfReference;
     }
@@ -268,7 +268,7 @@ internal class Rtf
             tag = tag.Remove(0, 1);
 
 
-            if (!AllowedHtmlTags.IsKnowedTag(tag))
+            if (!AllowedHtmlTags.IsKnownTag(tag))
             {
 
                 return "</html";
@@ -279,7 +279,7 @@ internal class Rtf
         {
             tag = tag.Remove(0, 1);
 
-            if (!AllowedHtmlTags.IsKnowedTag(tag))
+            if (!AllowedHtmlTags.IsKnownTag(tag))
             {
 
                 return "<html";

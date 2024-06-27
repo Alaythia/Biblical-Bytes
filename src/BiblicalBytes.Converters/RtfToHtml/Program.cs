@@ -1,27 +1,22 @@
-﻿using RtfToHtml;
+﻿namespace BiblicalBytes.Converters.RtfToHtml;
 
-namespace BiblicalBytes.Converters.RtfToHtml;
-
-internal class Program
+public class Program
 {
     [STAThread()]
     private static void Main(string[] args)
 
     {
-        var htmlofExample = File.ReadAllText("html.html");
-        var rtfofExample = File.ReadAllText("rtf.rtf");
+        var htmlOfExample = File.ReadAllText("html.html");
+        var rtfOfExample = File.ReadAllText("rtf.rtf");
 
-        // Console.WriteLine(htmlofExample);
         var htmlToRtf = new Rtf();
-        SaveToRtfFile(htmlToRtf.ConvertHtmlToRtf(htmlofExample));
+        SaveToRtfFile(htmlToRtf.ConvertHtmlToRtf(htmlOfExample));
         var rtfToHtml = new Html();
-        SaveToHtmlFile(rtfToHtml.ConvertRtfToHtml(rtfofExample));
+        SaveToHtmlFile(rtfToHtml.ConvertRtfToHtml(rtfOfExample));
     }
 
     private static void SaveToRtfFile( string html)
     {
-        //Console.WriteLine(html);
-
         // Assume we already have a document 'dc'.
         File.WriteAllText(@"../../Rtf.rtf", html);
     }

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace BiblicalBytes.Converters.RtfToHtml;
 
-namespace RtfToHtml
+public class Reference
 {
-    class Reference
-    {
-       public string content;
-       public bool tag;
-    }
+    public string Content { get; set; } = string.Empty;
+    public bool Tag { get; set; } = false;
 }

@@ -17,7 +17,7 @@ public static class MyString
         return newstringValue;
     }
 
-    public static int convertOneCharInHexToDec(string value)
+    public static int ConvertOneCharInHexToDec(string value)
     {
 
         if (value.Length != 1)
@@ -56,7 +56,7 @@ public static class MyString
         return newStringOfEscape.Length > 0 ? newStringOfEscape : null;
     }
 
-    public static bool hasOnlyWhiteSpace(string content)
+    public static bool HasOnlyWhiteSpace(string content)
     {
         return String.IsNullOrWhiteSpace(content);
     }
