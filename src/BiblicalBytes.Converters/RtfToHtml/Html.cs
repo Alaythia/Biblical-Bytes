@@ -136,7 +136,7 @@ public class Html
 
     private void ProcessChildNodes(RtfNodeCollection nodes, int start)
     {
-        foreach (RtfTreeNode node in nodes.Skip(start))
+        foreach (RtfTreeNode node in nodes)
         {
             if (!string.IsNullOrEmpty(node.NodeKey))
             {
