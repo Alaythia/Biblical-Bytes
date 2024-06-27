@@ -1,4 +1,6 @@
-﻿namespace BiblicalBytes.Converters.RtfToHtml;
+﻿using RtfToHtml;
+
+namespace BiblicalBytes.Converters.RtfToHtml;
 
 internal class Program
 {
